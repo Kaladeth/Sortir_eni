@@ -14,7 +14,7 @@ class ParticipantController extends AbstractController
         requirements:['id'=>'\d+']
     )]
     public function modifierProfil(
-        int $id,
+        int                   $id,
         ParticipantRepository $participantRepository
     ): Response
     {

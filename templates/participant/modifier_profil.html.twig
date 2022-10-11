@@ -1,6 +1,15 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ parent() }}Modifier mon profil{% endblock %}
 {% block body %}
-    <h1>Hello{{ app.user.prenom }}</h1>
+    <h1>Hello {{ app.user.prenom }}</h1>
+
+    <ul>
+        <li>Nom : <input type="text" value="{{ app.user.nom }}"></li>
+        <li>Prenom <input type="text" value="{{ app.user.prenom }}"></li>
+        <li>Email <input type="text" value="{{ app.user.email }}"></li>
+        <li>Telephonne <input type="text" value="{{ app.user.telephone }}"></li>
+        <li>Site : <input type="text" value="{{ app.user.site.nom }}"></li>
+    </ul>
+
 
 {% endblock %}
