@@ -1,3 +1,6 @@
+.env.local
+.idea/
+
 # Created by https://www.toptal.com/developers/gitignore/api/symfony,windows,phpstorm,composer
 # Edit at https://www.toptal.com/developers/gitignore?templates=symfony,windows,phpstorm,composer
 
