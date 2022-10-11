@@ -240,7 +240,6 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
             $this->sortiesOrganisees->add($sortiesOrganisee);
             $sortiesOrganisee->setOrganisateur($this);
         }
-
         return $this;
     }
 
