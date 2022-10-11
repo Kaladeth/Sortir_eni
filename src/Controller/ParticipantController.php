@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Participant;
 use App\Form\ParticipantType;
 use App\Repository\ParticipantRepository;
+use App\Repository\SortieRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -71,6 +73,45 @@ class ParticipantController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$participant->getId(), $request->request->get('_token'))) {
             $participantRepository->remove($participant, true);
+        }
+
+        return $this->redirectToRoute('app_participant_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/add/sortie/{id}', name: 'app_participant_add_sortie')]
+    public function addParticipant(
+        Request $request,
+        int $id,
+        EntityManagerInterface $entityManager,
+        SortieRepository $sortieRepository,
+        ParticipantRepository $participantRepository
+    ): Response
+    {
+        $participant = new Participant();
+        $test = $this->getUser()->getUserIdentifier() ;
+
+        $participant = $participantRepository->findOneBy([
+            "email" => $this->getUser()->getUserIdentifier()
+        ]);
+
+        $sortie = $sortieRepository->findOneBy([
+            'id' => $id
+        ]);
+
+
+        if (count($sortie->getParticipants()) <= $sortie->getNbInscriptionsMax())
+        {
+            $sortie->addParticipant($participant);
+            $participant->addSortie($sortie);
+            $entityManager->persist($sortie);
+            $entityManager->persist($participant);
+            $entityManager->flush();
+            $this->addFlash(
+                'ajout',
+                'Bravo, vous êtes inscrit à la sortie !'
+            );
+            return $this->redirectToRoute('accueil_main');
+
         }
 
         return $this->redirectToRoute('app_participant_index', [], Response::HTTP_SEE_OTHER);
