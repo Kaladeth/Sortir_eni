@@ -8,6 +8,7 @@ header {
     align-items: center;
     border:1px grey solid;
     padding-left:0;
+    background: linear-gradient(rgba(0,30,120,0.4), rgba(110,110,110,0.4));
 }
 header h5 {
     color:green;
@@ -46,5 +47,6 @@ header h5 {
     background-position: center;
     background-attachment: fixed;
     color:white;
+    text-shadow: #0f172a 2px 2px;
     height:900px;
 }
