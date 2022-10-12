@@ -24,14 +24,14 @@ class ParticipantType extends AbstractType
                     "class"=>Site::class,
                     "choice_label"=>"nom"
                 ])
-            ->add('sorties', EntityType::class,
-                [
-                    "class"=>Sortie::class,
-                    "choice_label"=>"nom",
-                    "multiple"=>true
-                ])
+//            ->add('sorties', EntityType::class,
+//                [
+//                    "class"=>Sortie::class,
+//                    "choice_label"=>"nom",
+//                    "multiple"=>true
+//                ])
 //            ->add('roles')
-//            ->add('password')
+            ->add('password')
 //            ->add('administrateur')
 //            ->add('actif')
 

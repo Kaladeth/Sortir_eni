@@ -8,33 +8,45 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>DateHeureDebut</th>
-                <th>Duree</th>
-                <th>DateLimiteInscription</th>
-                <th>NbInscriptionsMax</th>
-                <th>InfosSortie</th>
-                <th>Etat</th>
-                <th>Image</th>
-                <th>actions</th>
+                <th>Nom de la sortie</th>
+                <th>Date de la sortie</th>
+                <th>Clôture des inscriptions</th>
+                <th>Participants/Places</th>
+                <th>État</th>
+                <th>Inscrit</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for sortie in sorties %}
             <tr>
-                <td>{{ sortie.id }}</td>
                 <td>{{ sortie.nom }}</td>
-                <td>{{ sortie.dateHeureDebut ? sortie.dateHeureDebut|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ sortie.duree }}</td>
-                <td>{{ sortie.dateLimiteInscription ? sortie.dateLimiteInscription|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ sortie.nbInscriptionsMax }}</td>
-                <td>{{ sortie.infosSortie }}</td>
+                <td>{{ sortie.dateHeureDebut ? sortie.dateHeureDebut|date('d/m/Y à H:i') : '' }}</td>
+                <td>{{ sortie.dateLimiteInscription ? sortie.dateLimiteInscription|date('d/m/Y') : '' }}</td>
+                <td> XXX / {{ sortie.nbInscriptionsMax }} places</td>
                 <td>{{ sortie.etatSortie.libelle }}</td>
-                <td>{{ sortie.image }}</td>
                 <td>
-                    <a href="{{ path('app_sortie_show', {'id': sortie.id}) }}">show</a>
-                    <a href="{{ path('app_sortie_edit', {'id': sortie.id}) }}">edit</a>
+                    {% if app.user in sortie.participants %}
+                    <p>X</p>
+                    {% endif %}
+                </td>
+                <td>
+
+                    {% if app.user.id != sortie.organisateur.id %}
+                        <a href="{{ path('app_sortie_show', {'id': sortie.id}) }}">Afficher</a> -
+                        {% if app.user in sortie.participants %}
+                            <a href="{{ path('app_sortie_show', {'id': sortie.id}) }}">Se désinscrire</a> -
+                        {%  else %}
+                            <a href="{{ path('app_sortie_show', {'id': sortie.id}) }}">S'inscrire</a> -
+                        {% endif %}
+                    {% endif %}
+
+                    {% if app.user.id == sortie.organisateur.id %}
+                        <a href="{{ path('app_sortie_edit', {'id': sortie.id}) }}">Modifier</a> -
+                        <a href="{{ path('app_sortie_show', {'id': sortie.id}) }}">Publier</a>
+                    {% endif %}
+
+
                 </td>
             </tr>
         {% else %}
