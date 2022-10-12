@@ -38,7 +38,7 @@
             </tr>
             <tr>
                 <th>Etat</th>
-                <td>{{ sortie.etat }}</td>
+                <td>{{ sortie.etatSortie.libelle }}</td>
             </tr>
             <tr>
                 <th>Image</th>
@@ -46,10 +46,8 @@
             </tr>
             </tbody>
         </table>
-
         <a href="{{ path('app_sortie_index') }}">Index</a><br>
         <a href="{{ path('app_sortie_edit', {'id': sortie.id}) }}">Editer</a>
-
         {{ include('sortie/_delete_form.html.twig') }}
     </div>
 {% endblock %}
