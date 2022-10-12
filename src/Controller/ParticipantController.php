@@ -78,7 +78,8 @@ class ParticipantController extends AbstractController
         return $this->redirectToRoute('app_participant_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/add/sortie/{id}', name: 'app_participant_add_sortie')]
+    //PARTICIPANT S'INSCRIT A UNE SORTIE
+    #[Route('/ajouter/sortie/{id}', name: 'app_participant_add_sortie')]
     public function addParticipant(
         Request $request,
         int $id,
@@ -87,9 +88,6 @@ class ParticipantController extends AbstractController
         ParticipantRepository $participantRepository
     ): Response
     {
-        $participant = new Participant();
-        $test = $this->getUser()->getUserIdentifier() ;
-
         $participant = $participantRepository->findOneBy([
             "email" => $this->getUser()->getUserIdentifier()
         ]);
@@ -98,8 +96,8 @@ class ParticipantController extends AbstractController
             'id' => $id
         ]);
 
-
-        if (count($sortie->getParticipants()) <= $sortie->getNbInscriptionsMax())
+        $datenow = new \DateTime("now");
+        if (count($sortie->getParticipants()) <= $sortie->getNbInscriptionsMax() && $datenow<$sortie->getDateLimiteInscription())
         {
             $sortie->addParticipant($participant);
             $participant->addSortie($sortie);
@@ -107,13 +105,61 @@ class ParticipantController extends AbstractController
             $entityManager->persist($participant);
             $entityManager->flush();
             $this->addFlash(
-                'ajout',
+                'gestionInscriptions',
                 'Bravo, vous êtes inscrit à la sortie !'
             );
-            return $this->redirectToRoute('accueil_main');
+            return $this->redirectToRoute('app_sortie_index');
 
         }
 
-        return $this->redirectToRoute('app_participant_index', [], Response::HTTP_SEE_OTHER);
+        $this->addFlash(
+            'gestionInscriptions',
+            'Impossible de vous inscrire à la sortie !'
+        );
+
+        return $this->redirectToRoute('app_sortie_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    //PARTICIPANT SE DESINSCRIT D'UNE SORTIE
+    #[Route('/suppr/sortie/{id}', name: 'app_participant_del_sortie')]
+    public function delParticipant(
+        Request $request,
+        int $id,
+        EntityManagerInterface $entityManager,
+        SortieRepository $sortieRepository,
+        ParticipantRepository $participantRepository
+    ): Response
+    {
+        $participant = $participantRepository->findOneBy([
+            "email" => $this->getUser()->getUserIdentifier()
+        ]);
+
+        $sortie = $sortieRepository->findOneBy([
+            'id' => $id
+        ]);
+
+        $datenow = new \DateTime("now");
+
+        if ($datenow<$sortie->getDateHeureDebut())
+        {
+            $sortie->removeParticipant($participant);
+            $participant->removeSortie($sortie) ;
+            $entityManager->persist($sortie);
+            $entityManager->persist($participant);
+            $entityManager->flush();
+            $this->addFlash(
+                'gestionInscriptions',
+                'Vous êtes désinscrit de la sortie !'
+            );
+            return $this->redirectToRoute('app_sortie_index');
+
+        }
+
+        $this->addFlash(
+            'gestionInscriptions',
+            'Impossible de vous désinscrire !'
+        );
+
+        return $this->redirectToRoute('app_sortie_index', [], Response::HTTP_SEE_OTHER);
     }
 }

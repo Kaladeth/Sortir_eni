@@ -18,7 +18,6 @@ class ParticipantType extends AbstractType
             ->add('email')
             ->add('nom')
             ->add('prenom')
-//            ->add('password')
             ->add('telephone')
             ->add('site', EntityType::class,
                 [
@@ -32,7 +31,6 @@ class ParticipantType extends AbstractType
                     "multiple"=>true
                 ])
 //            ->add('administrateur')
-//            ->add('roles')
 //            ->add('actif')
 
         ;

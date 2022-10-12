@@ -17,6 +17,8 @@ class SortieController extends AbstractController
     #[Route('/', name: 'app_sortie_index', methods: ['GET'])]
     public function index(SortieRepository $sortieRepository): Response
     {
+
+
         return $this->render('sortie/index.html.twig', [
             'sorties' => $sortieRepository->findAll(),
         ]);
