@@ -8,40 +8,32 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ sortie.id }}</td>
-            </tr>
-            <tr>
                 <th>Nom</th>
                 <td>{{ sortie.nom }}</td>
             </tr>
             <tr>
-                <th>DateHeureDebut</th>
+                <th>Date et heure de début</th>
                 <td>{{ sortie.dateHeureDebut ? sortie.dateHeureDebut|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>Duree</th>
+                <th>Durée</th>
                 <td>{{ sortie.duree }}</td>
             </tr>
             <tr>
-                <th>DateLimiteInscription</th>
+                <th>Date limite d'inscription</th>
                 <td>{{ sortie.dateLimiteInscription ? sortie.dateLimiteInscription|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>NbInscriptionsMax</th>
+                <th>Nombre max d'inscrits</th>
                 <td>{{ sortie.nbInscriptionsMax }}</td>
             </tr>
             <tr>
-                <th>InfosSortie</th>
+                <th>Description</th>
                 <td>{{ sortie.infosSortie }}</td>
             </tr>
             <tr>
                 <th>Etat</th>
-                <td>{{ sortie.etat }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ sortie.image }}</td>
+                <td>{{ sortie.etatSortie.libelle }}</td>
             </tr>
         </tbody>
     </table>

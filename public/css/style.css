@@ -50,3 +50,11 @@ header h5 {
     text-shadow: #0f172a 2px 2px;
     height:900px;
 }
+
+/* AFFICHAGE DE LA LISTE DES SORTIES */
+#liste_sorties {
+    background:linear-gradient(rgba(0,140, 130, 0.4), rgba(40,110, 190, 0.4)) ;
+}
+#filter {
+    margin-top:13vh;
+}
