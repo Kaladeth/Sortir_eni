@@ -3,10 +3,10 @@
 {% block title %}Participant{% endblock %}
 
 {% block body %}
-    <h1>Participant</h1>
-
-    <table class="table">
-        <tbody>
+    <div class="forms">
+        <h1>Participant</h1>
+        <table class="table">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ participant.id }}</td>
@@ -35,12 +35,13 @@
                 <th>Actif</th>
                 <td>{{ participant.actif ? 'Yes' : 'No' }}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+        {% if app.user.administrateur %}
+            <a href="{{ path('app_participant_index') }}">Index</a><br>
+        {% endif %}
+        <a href="{{ path('app_participant_edit', {'id': participant.id}) }}">Editer</a>
 
-    <a href="{{ path('app_participant_index') }}">back to list</a>
-
-    <a href="{{ path('app_participant_edit', {'id': participant.id}) }}">edit</a>
-
-    {{ include('participant/_delete_form.html.twig') }}
+        {{ include('participant/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

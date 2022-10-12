@@ -3,10 +3,11 @@
 {% block title %}Sortie{% endblock %}
 
 {% block body %}
-    <h1>Sortie</h1>
+    <div class="forms">
 
-    <table class="table">
-        <tbody>
+        <h1>Sortie</h1>
+        <table class="table">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ sortie.id }}</td>
@@ -43,12 +44,12 @@
                 <th>Image</th>
                 <td>{{ sortie.image }}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_sortie_index') }}">back to list</a>
+        <a href="{{ path('app_sortie_index') }}">Index</a><br>
+        <a href="{{ path('app_sortie_edit', {'id': sortie.id}) }}">Editer</a>
 
-    <a href="{{ path('app_sortie_edit', {'id': sortie.id}) }}">edit</a>
-
-    {{ include('sortie/_delete_form.html.twig') }}
+        {{ include('sortie/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

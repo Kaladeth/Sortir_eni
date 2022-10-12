@@ -18,6 +18,7 @@ class ParticipantType extends AbstractType
             ->add('email')
             ->add('nom')
             ->add('prenom')
+//            ->add('password')
             ->add('telephone')
             ->add('site', EntityType::class,
                 [
@@ -30,9 +31,8 @@ class ParticipantType extends AbstractType
                     "choice_label"=>"nom",
                     "multiple"=>true
                 ])
-//            ->add('roles')
-//            ->add('password')
 //            ->add('administrateur')
+//            ->add('roles')
 //            ->add('actif')
 
         ;

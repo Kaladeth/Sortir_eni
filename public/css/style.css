@@ -50,3 +50,9 @@ header h5 {
     text-shadow: #0f172a 2px 2px;
     height:900px;
 }
+
+/* Formulaires */
+.forms{
+    margin: .3em;
+    padding: .3em;
+}
