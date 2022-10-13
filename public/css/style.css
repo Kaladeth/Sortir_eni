@@ -56,5 +56,27 @@ header h5 {
     background:linear-gradient(rgba(0,140, 130, 0.4), rgba(40,110, 190, 0.4)) ;
 }
 #filter {
-    margin-top:5vh;
+    margin-top:13vh;
+}
+#valider_filter {
+    width:12em;
+    height:4em;
+    border-radius: 25%;
+    background-color: #a6b1c6;
+}
+#valider_filter:hover {
+    background-color: white;
+}
+#creer_sortie {
+    margin: 0.5em 1em 1em 1em;
+    background-color:#a6b1c6;
+    border:1px darkgray solid;
+}
+#creer_sortie:hover {
+    background-color:white;
+}
+
+/* CREER SORTIE */
+#testouille button {
+    background-color: red;
 }

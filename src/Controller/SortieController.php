@@ -6,6 +6,7 @@ use App\Entity\Sortie;
 use App\Form\SortieType;
 use App\Repository\EtatRepository;
 use App\Repository\SortieRepository;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,6 +25,19 @@ class SortieController extends AbstractController
         ]);
     }
 
+    #[Route('/', name: 'app_sortie_index_filtre', methods: ['POST'])]
+    public function indexFiltre(SortieRepository $sortieRepository): Response
+    {
+
+
+        return $this->render('sortie/index.html.twig', [
+            'sorties' => $sortieRepository->findBy(
+                ['site' => $_POST['site_filter']]
+
+            ),
+        ]);
+    }
+
     #[Route('/new', name: 'app_sortie_new', methods: ['GET', 'POST'])]
     public function new(Request $request, SortieRepository $sortieRepository, EtatRepository $etatRepository): Response
     {
@@ -37,8 +51,6 @@ class SortieController extends AbstractController
 
             ]);
             $sortie->setEtatSortie($etat);
-            $userCo = $this->getUser();
-            $userCoId = $sortieRepository->findOneBy(["id"=>$userCo]);
             $sortie->setOrganisateur($this->getUser());
             $sortie->setSite($this->getUser()->getSite());
             $sortieRepository->save($sortie, true);
