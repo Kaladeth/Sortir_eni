@@ -49,6 +49,24 @@ class SortieController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}', name: 'app_sortie_index_pub', methods: ['GET'])]
+    public function indexPublier(SortieRepository $sortieRepository, EtatRepository $etatRepository, int $id): Response
+    {
+        $sortie =$sortieRepository->findOneBy(
+            ['id' => $id]
+        );
+        $etat = $etatRepository->findOneBy([
+            'id'=>2
+
+        ]);
+        $sortie->setEtatSortie($etat);
+        $sortieRepository->save($sortie, true);
+
+        return $this->render('sortie/index.html.twig', [
+            'sorties' => $sortieRepository->findAll(),
+        ]);
+    }
+
     #[Route('/', name: 'app_sortie_index_filtre', methods: ['POST'])]
     public function indexFiltre(SortieRepository $sortieRepository): Response
     {

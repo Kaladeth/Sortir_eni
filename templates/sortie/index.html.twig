@@ -101,7 +101,7 @@
 
                                 {# UNIQUEMENT SORTIE ETAT CREEE #}
                                 {% if sortie.etatSortie.id == 1 %}
-                                    <a href="{{ path('app_sortie_show', {'id': sortie.id}) }}">Publier</a> -
+                                    <a href="{{ path('app_sortie_index_pub', {'id': sortie.id}) }}">Publier</a> -
                                 {% endif %}
 
                                 {# UNIQUEMENT SORTIES ETATS OUVERT OU CLOTUREE #}

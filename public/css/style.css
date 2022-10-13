@@ -83,6 +83,14 @@ header h5 {
 }
 
 /* CREER SORTIE */
-#testouille button {
+#ajout_sortie button {
     background-color: red;
+}
+#ajout_sortie input {
+    width:30%;
+    border:1px solid black;
+}
+.dhd_ajout {
+    border:1px black solid;
+    width:33%;
 }
