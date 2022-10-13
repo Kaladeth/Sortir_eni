@@ -92,5 +92,13 @@ header h5 {
 }
 .dhd_ajout {
     border:1px black solid;
-    width:33%;
+    width:30%;
+}
+.dli_ajout {
+    border:1px black solid;
+    width:30%;
+}
+.lieu_ajout {
+    border:1px black solid;
+    width:30%;
 }
