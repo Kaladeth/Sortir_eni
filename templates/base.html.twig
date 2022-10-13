@@ -27,20 +27,24 @@
                 <li>Accueil</li>
             </a>
             {% if app.user %}
-            <a href="{{ path('app_logout') }}" class="mx-3">
-                <li>Se déconnecter</li>
-            </a>
-            <a href="{{ path('app_participant_show', {'id':app.user.id}) }}" class="mx-3">
-                <li>Gérer son profil</li>
-            </a>
+                <a href="{{ path('app_logout') }}" class="mx-3">
+                    <li>Se déconnecter</li>
+                </a>
+                <a href="{{ path('app_participant_show', {'id':app.user.id}) }}" class="mx-3">
+                    <li>Gérer son profil</li>
+                </a>
             {% else %}
                 <a href="{{ path('app_login') }}" class="mx-3">
                     <li>Se connecter</li>
                 </a>
             {% endif %}
-            <a href="{{ path('app_sortie_index') }}" class="mx-3">
-                <li>Sorties</li>
-            </a>
+
+            {% if app.user %}
+                <a href="{{ path('app_sortie_index') }}" class="mx-3">
+                    <li>Sorties</li>
+                </a>
+            {% endif %}
+
         </ul>
     </div>
 </header>

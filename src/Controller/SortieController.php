@@ -6,6 +6,8 @@ use App\Entity\Sortie;
 use App\Form\SortieType;
 use App\Repository\EtatRepository;
 use App\Repository\SortieRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,9 +17,32 @@ use Symfony\Component\Routing\Annotation\Route;
 class SortieController extends AbstractController
 {
     #[Route('/', name: 'app_sortie_index', methods: ['GET'])]
-    public function index(SortieRepository $sortieRepository): Response
+    public function index(SortieRepository $sortieRepository,
+                          EntityManagerInterface $entityManager,
+                          EtatRepository $etatRepository
+    ): Response
     {
+        $etatArchive = $etatRepository->findOneBy(
+            [
+                'id'=>7
+            ]
+        );
 
+        date_default_timezone_set('Europe/Paris');
+        $dateNow = new \DateTime("now");
+        $sorties = $sortieRepository->findAll();
+
+        foreach ($sorties as $sort)
+        {
+            $finDeSortie = clone $sort->getDateHeureDebut();
+            $finDeSortie->add(new \DateInterval('PT745H'));
+            $finDeSortie->add(new \DateInterval('PT'.$sort->getDuree().'M'));
+            if ($finDeSortie<$dateNow){
+                $sort->setEtatSortie($etatArchive);
+                $entityManager->persist($sort);
+                $entityManager->flush();
+            }
+        }
 
         return $this->render('sortie/index.html.twig', [
             'sorties' => $sortieRepository->findAll(),
