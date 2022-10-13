@@ -78,6 +78,14 @@ class SortieController extends AbstractController
         ]);
     }
 
+    #[Route('/annuler/{id}', name: 'app_sortie_cancel', methods: ['POST'])]
+    public function cancel(Request $request, Sortie $sortie, SortieRepository $sortieRepository): Response
+    {
+
+
+        return $this->redirectToRoute('app_sortie_index', [], Response::HTTP_SEE_OTHER);
+    }
+
     #[Route('/{id}', name: 'app_sortie_delete', methods: ['POST'])]
     public function delete(Request $request, Sortie $sortie, SortieRepository $sortieRepository): Response
     {
