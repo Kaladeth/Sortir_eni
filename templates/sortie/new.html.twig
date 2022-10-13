@@ -3,11 +3,13 @@
 {% block title %}New Sortie{% endblock %}
 
 {% block body %}
-    <div class="forms">
+    <div id="testouille">
         <h1>Création d'une nouvelle sortie</h1>
 
         {{ include('sortie/_form.html.twig') }}
+
         <a href="{{ path('app_sortie_index') }}">back to list</a>
 
     </div>
+
 {% endblock %}
