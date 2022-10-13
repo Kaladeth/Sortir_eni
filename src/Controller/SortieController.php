@@ -49,7 +49,7 @@ class SortieController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_sortie_index_pub', methods: ['GET'])]
+    #[Route('/{id}', name: 'app_sortie_index_pub', requirements: ['id' => '\d+'], methods: ['GET'])]
     public function indexPublier(SortieRepository $sortieRepository, EtatRepository $etatRepository, int $id): Response
     {
         $sortie =$sortieRepository->findOneBy(
@@ -106,7 +106,7 @@ class SortieController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_sortie_show', methods: ['GET'])]
+    #[Route('/details/{id}', name: 'app_sortie_show', methods: ['GET'])]
     public function show(Sortie $sortie): Response
     {
         return $this->render('sortie/show.html.twig', [
