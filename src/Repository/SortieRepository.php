@@ -54,56 +54,38 @@ class SortieRepository extends ServiceEntityRepository
         $query = $this
             ->createQueryBuilder('so')
             ->select('so');
-
         if (!empty($nomSite)){
             $query = $query
                 ->join('so.site', 'si')
                 ->andWhere('si.nom IN (:site)')
                 ->setParameter('site', $nomSite);
         }
-
         if(!empty($rechercheTexte)){
             $query = $query
                 ->andWhere('so.nom LIKE :recherche')
                 ->setParameter('recherche', "%{$rechercheTexte}%");
         }
-
         if (!empty($dateDebut)){
             $query = $query
                 ->andWhere('so.dateHeureDebut > :dateDebutRech')
                 ->setParameter('dateDebutRech', $dateDebut);
         }
-
         if (!empty($dateFin)){
             $query = $query
                 ->andWhere('so.dateHeureDebut < :dateFinRech')
                 ->setParameter('dateFinRech', $dateFin);
         }
-
         if($suisOrganisateur){
             $query = $query
                 ->andWhere('so.organisateur = :idUser')
                 ->setParameter('idUser',$userId);
         }
-
         if($suisInscrit){
             $query = $query
                 ->leftjoin('so.participants', 'pa')
                 ->andWhere('pa.id IN (:userId)')
                 ->setParameter('userId',$userId);
         }
-
-//        if($suisPasInscrit){
-//            $tempQuery = $this->createQueryBuilder('so')
-//                ->leftjoin('so.participants', 'pa')
-//                ->andWhere('pa.id = :userId');
-//            $query = $query
-//                ->andWhere('pa.id NOT IN ('.$tempQuery->getDQL().')')
-//                ->setParameter('userId',$userId);
-//            dd("apres temp query") ;
-//
-//        }
-
         if($suisPasInscrit){
             $tempsQuery = $this->createQueryBuilder('sortie')
                 ->select('sortie.id')
@@ -114,11 +96,11 @@ class SortieRepository extends ServiceEntityRepository
                 ->andWhere('so.id NOT IN ('.$tempsQuery->getDQL().')')
                 ->setParameter('userId',$userId);
         }
-
-
-
-
-
+        if ($sortiesPassees){
+            $query = $query
+                ->andWhere('so.etatSortie = :etatId')
+                ->setParameter('etatId', 5);
+        }
         return $query->getQuery()->getResult();
     }
 
