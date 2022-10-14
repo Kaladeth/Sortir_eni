@@ -17,16 +17,24 @@ class SortieType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('dateHeureDebut')
+            ->add('dateHeureDebut', null,
+            [
+                "attr"=>["class"=>"dhd_ajout"]
+            ]
+            )
             ->add('duree')
-            ->add('dateLimiteInscription')
+            ->add('dateLimiteInscription', null,
+                [
+                    "attr"=>["class"=>"dli_ajout"]
+                ])
             ->add('nbInscriptionsMax')
             ->add('infosSortie')
             ->add('image')
             ->add('lieu', EntityType::class,
             [
                 'class'=>Lieu::class,
-                "choice_label"=>"nom"
+                "choice_label"=>"nom",
+                "attr"=>["class"=>"lieu_ajout"]
             ]
             )
 
