@@ -162,20 +162,20 @@ class SortieController extends AbstractController
     }
 
     //METHODE POUR ANNULER UNE SORTIE EN TANT QU'ORGANISATEUR
-    #[Route('/annuler/{id}', name: 'app_sortie_cancel', methods: ['POST'])]
-    public function cancel(Request $request, Sortie $sortie, EtatRepository $etatRepository, SortieRepository $sortieRepository): Response
+    #[Route('/annuler/{id}', name: 'app_sortie_cancel', methods: ['POST', 'GET'])]
+    public function cancel(Request $request, Sortie $sortie,
+                           EtatRepository $etatRepository,
+                           SortieRepository $sortieRepository): Response
     {
         $form = $this->createForm(SortieType::class, $sortie);
         $form->handleRequest($request);
+        $motif = $request->request->get('motif');
+        $id = $request->request->get('id');
+
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $etat = $etatRepository->findOneBy(
-                [
-                    'id'=> 6
-                ]
-            );
+            $etat = $etatRepository->findOneBy(['id'=> 6]);
             $sortie->setEtatSortie($etat);
-
             $sortieRepository->save($sortie,true);
             return $this->redirectToRoute('app_sortie_index', [], Response::HTTP_SEE_OTHER);
         }

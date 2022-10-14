@@ -17,29 +17,42 @@ class SortieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom')
+            ->add('nom', null,
+                [
+                    'empty_data' => ''
+                ])
             ->add('dateHeureDebut', null,
-            [
-                "attr"=>["class"=>"dhd_ajout"]
-            ]
-            )
-            ->add('duree')
+                [
+                    "attr"=>["class"=>"dhd_ajout"]
+                ])
+            ->add('duree', null,
+                [
+                    'empty_data' => ''
+                ])
             ->add('dateLimiteInscription', null,
                 [
                     "attr"=>["class"=>"dli_ajout"]
                 ])
-            ->add('nbInscriptionsMax')
+            ->add('nbInscriptionsMax',null,
+                [
+                    'empty_data' => ''
+                ])
             ->add('infosSortie', TextareaType::class,
                 [
+                    'empty_data' => '',
                     "attr"=>["class"=>"motifAnnulation"]
                 ])
-            ->add('image')
+            ->add('image',null,
+                [
+                    'empty_data' => ''
+                ])
             ->add('lieu', EntityType::class,
-            [
-                'class'=>Lieu::class,
-                "choice_label"=>"nom",
-                "attr"=>["class"=>"lieu_ajout"]
-            ]
+                [
+                    'empty_data' => '',
+                    'class'=>Lieu::class,
+                    "choice_label"=>"nom",
+                    "attr"=>["class"=>"lieu_ajout"]
+                ]
             )
 
         ;
