@@ -47,7 +47,8 @@ class SortieRepository extends ServiceEntityRepository
                                     bool $suisOrganisateur =  NULL,
                                     bool $suisInscrit =  NULL,
                                     bool $suisPasInscrit =  NULL,
-                                    bool $sortiesPassees =  NULL
+                                    bool $sortiesPassees =  NULL,
+                                    int $userId
     )
     {
         $query = $this
@@ -63,9 +64,29 @@ class SortieRepository extends ServiceEntityRepository
 
         if(!empty($rechercheTexte)){
             $query = $query
-                ->andWhere('so.nom IN (:sortie)')
-                ->setParameter('sortie', "%$rechercheTexte%");
+                ->andWhere('so.nom LIKE :recherche')
+                ->setParameter('recherche', "%{$rechercheTexte}%");
         }
+
+        if (!empty($dateDebut)){
+            $query = $query
+                ->andWhere('so.dateHeureDebut > :dateDebutRech')
+                ->setParameter('dateDebutRech', $dateDebut);
+        }
+
+        if (!empty($dateFin)){
+            $query = $query
+                ->andWhere('so.dateHeureDebut < :dateFinRech')
+                ->setParameter('dateFinRech', $dateFin);
+        }
+
+        if($suisOrganisateur){
+            $query = $query
+                ->andWhere('so.organisateur = :idUser')
+                ->setParameter('idUser',$userId);
+        }
+
+
 
         return $query->getQuery()->getResult();
     }

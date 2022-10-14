@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Sortie;
 use App\Form\SortieType;
 use App\Repository\EtatRepository;
+use App\Repository\ParticipantRepository;
 use App\Repository\SiteRepository;
 use App\Repository\SortieRepository;
 use Doctrine\ORM\EntityManager;
@@ -58,6 +59,7 @@ class SortieController extends AbstractController
     public function indexFiltre(SortieRepository $sortieRepository,
                                 SortieFiltres $sortieFiltres,
                                 SiteRepository $siteRepository,
+                                ParticipantRepository $participantRepository,
                                 Request $request
     ): Response
     {
@@ -71,6 +73,8 @@ class SortieController extends AbstractController
         $suisPasInscrit = $request->request->get('suisPasInscrit');
         $sortiesPassees = $request->request->get('sortiesPassees');
 
+        $user = $participantRepository->findOneBy(['email' => $this->getUser()->getUserIdentifier()]) ;
+        $userId = $user->getId();
 
         $sorties = $sortieRepository->findWithFilters($siteSelection,
                                     $rechercheTexte,
@@ -79,7 +83,8 @@ class SortieController extends AbstractController
                                     $suisOrganisateur,
                                     $suisInscrit,
                                     $suisPasInscrit,
-                                    $sortiesPassees);
+                                    $sortiesPassees,
+                                    $userId);
 
         return $this->render('sortie/index.html.twig', [
             'sorties' => $sorties,
@@ -127,7 +132,7 @@ class SortieController extends AbstractController
 
         return $this->renderForm('sortie/new.html.twig', [
             'sortie' => $sortie,
-            'form' => $form->createView(),
+            'form' => $form
         ]);
     }
 
@@ -153,7 +158,7 @@ class SortieController extends AbstractController
         }
         return $this->renderForm('sortie/edit.html.twig', [
             'sortie' => $sortie,
-            'form' => $form->createView(),
+            'form' => $form
         ]);
     }
 
