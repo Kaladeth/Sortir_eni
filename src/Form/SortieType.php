@@ -8,6 +8,7 @@ use App\Entity\Site;
 use App\Entity\Sortie;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -28,7 +29,10 @@ class SortieType extends AbstractType
                     "attr"=>["class"=>"dli_ajout"]
                 ])
             ->add('nbInscriptionsMax')
-            ->add('infosSortie')
+            ->add('infosSortie', TextareaType::class,
+                [
+                    "attr"=>["class"=>"motifAnnulation"]
+                ])
             ->add('image')
             ->add('lieu', EntityType::class,
             [
