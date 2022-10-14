@@ -54,7 +54,7 @@ class SortieRepository extends ServiceEntityRepository
         $query = $this
             ->createQueryBuilder('so')
             ->select('so')
-            ->join('so.site', 'si') ;
+            ->join('so.site', 'si');
 
         if (!empty($nomSite)){
             $query = $query
@@ -85,6 +85,23 @@ class SortieRepository extends ServiceEntityRepository
                 ->andWhere('so.organisateur = :idUser')
                 ->setParameter('idUser',$userId);
         }
+
+        if($suisInscrit){
+            $query = $query
+                ->join('so.participants', 'pa')
+                ->andWhere('pa.id IN (:userId)')
+                ->setParameter('userId',$userId);
+        }
+
+        if($suisPasInscrit){
+
+            $query = $query
+                ->innerJoin('so.participants', 'pa')
+                ->andWhere('pa.id NOT IN (:userId)')
+                ->setParameter('userId',$userId);
+        }
+
+
 
 
 

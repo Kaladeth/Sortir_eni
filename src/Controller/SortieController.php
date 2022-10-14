@@ -104,9 +104,8 @@ class SortieController extends AbstractController
         ]);
         $sortie->setEtatSortie($etat);
         $sortieRepository->save($sortie, true);
-        return $this->render('sortie/index.html.twig', [
-            'sorties' => $sortieRepository->findAll(),
-        ]);
+        return $this->redirectToRoute('app_sortie_index', [], Response::HTTP_SEE_OTHER);
+
     }
 
     //METHODE DE CREATION D'UNE NOUVELLE SORTIE
