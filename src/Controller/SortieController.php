@@ -169,6 +169,9 @@ class SortieController extends AbstractController
     {
         $form = $this->createForm(SortieType::class, $sortie);
         $form->handleRequest($request);
+        $motif = $request->request->get('motif');
+        $id = $request->request->get('id');
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $etat = $etatRepository->findOneBy(['id'=> 6]);
