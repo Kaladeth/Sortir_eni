@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Sortie;
 use App\Form\SortieType;
 use App\Repository\EtatRepository;
+use App\Repository\SiteRepository;
 use App\Repository\SortieRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Services\SortieFiltres;
 
 #[Route('/sortie')]
 class SortieController extends AbstractController
@@ -19,19 +21,19 @@ class SortieController extends AbstractController
     #[Route('/', name: 'app_sortie_index', methods: ['GET'])]
     public function index(SortieRepository $sortieRepository,
                           EntityManagerInterface $entityManager,
-                          EtatRepository $etatRepository
+                          EtatRepository $etatRepository,
+                          SiteRepository $siteRepository
     ): Response
     {
+        //ARCHIVAGE DES SORTIES TERMINEES DEPUIS +1 MOIS
         $etatArchive = $etatRepository->findOneBy(
             [
                 'id'=>7
             ]
         );
-
         date_default_timezone_set('Europe/Paris');
         $dateNow = new \DateTime("now");
         $sorties = $sortieRepository->findAll();
-
         foreach ($sorties as $sort)
         {
             $finDeSortie = clone $sort->getDateHeureDebut();
@@ -45,20 +47,42 @@ class SortieController extends AbstractController
         }
 
         return $this->render('sortie/index.html.twig', [
-            'sorties' => $sortieRepository->findAll(),
+            'sorties' => $sorties,
+            'sites' => $siteRepository->findAll()
         ]);
     }
 
-    #[Route('/', name: 'app_sortie_index_filtre', methods: ['POST'])]
-    public function indexFiltre(SortieRepository $sortieRepository): Response
+    //METHODE POUR APPLICATION DES FILTRES
+    #[Route('/filtres', name: 'app_sortie_index_filtre', methods: ['POST'])]
+    public function indexFiltre(SortieRepository $sortieRepository,
+                                SortieFiltres $sortieFiltres,
+                                SiteRepository $siteRepository,
+                                Request $request
+    ): Response
     {
+        //GESTION DES FILTRES
+        $siteSelection = $request->request->get('site_filter');
+        $rechercheTexte = $request->request->get('word_filter');
+        $dateDebut = $request->request->get('dateDebut_filter');
+        $dateFin = $request->request->get('dateFin_filter');
+        $suisOrganisateur = $request->request->get('suisOrganisateur');
+        $suisInscrit = $request->request->get('suisInscrit');
+        $suisPasInscrit = $request->request->get('suisPasInscrit');
+        $sortiesPassees = $request->request->get('sortiesPassees');
 
+
+        $sorties = $sortieRepository->findWithFilters($siteSelection,
+                                    $rechercheTexte,
+                                    $dateDebut,
+                                    $dateFin,
+                                    $suisOrganisateur,
+                                    $suisInscrit,
+                                    $suisPasInscrit,
+                                    $sortiesPassees);
 
         return $this->render('sortie/index.html.twig', [
-            'sorties' => $sortieRepository->findBy(
-                ['site' => $_POST['site_filter']]
-
-            ),
+            'sorties' => $sorties,
+            'sites' => $siteRepository->findAll()
         ]);
     }
 
@@ -84,7 +108,7 @@ class SortieController extends AbstractController
 
         return $this->renderForm('sortie/new.html.twig', [
             'sortie' => $sortie,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -110,7 +134,7 @@ class SortieController extends AbstractController
 
         return $this->renderForm('sortie/edit.html.twig', [
             'sortie' => $sortie,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 

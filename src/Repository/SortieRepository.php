@@ -39,6 +39,37 @@ class SortieRepository extends ServiceEntityRepository
         }
     }
 
+    public function findWithFilters(
+                                    string $nomSite = NULL,
+                                    string $rechercheTexte = NULL,
+                                    string $dateDebut = NULL,
+                                    string $dateFin = NULL,
+                                    bool $suisOrganisateur =  NULL,
+                                    bool $suisInscrit =  NULL,
+                                    bool $suisPasInscrit =  NULL,
+                                    bool $sortiesPassees =  NULL
+    )
+    {
+        $query = $this
+            ->createQueryBuilder('so')
+            ->select('so')
+            ->join('so.site', 'si') ;
+
+        if (!empty($nomSite)){
+            $query = $query
+                ->andWhere('si.nom IN (:site)')
+                ->setParameter('site', $nomSite);
+        }
+
+        if(!empty($rechercheTexte)){
+            $query = $query
+                ->andWhere('so.nom IN (:sortie)')
+                ->setParameter('sortie', "%$rechercheTexte%");
+        }
+
+        return $query->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Sortie[] Returns an array of Sortie objects
 //     */
