@@ -53,11 +53,11 @@ class SortieRepository extends ServiceEntityRepository
     {
         $query = $this
             ->createQueryBuilder('so')
-            ->select('so')
-            ->join('so.site', 'si');
+            ->select('so');
 
         if (!empty($nomSite)){
             $query = $query
+                ->join('so.site', 'si')
                 ->andWhere('si.nom IN (:site)')
                 ->setParameter('site', $nomSite);
         }
@@ -88,16 +88,30 @@ class SortieRepository extends ServiceEntityRepository
 
         if($suisInscrit){
             $query = $query
-                ->join('so.participants', 'pa')
+                ->leftjoin('so.participants', 'pa')
                 ->andWhere('pa.id IN (:userId)')
                 ->setParameter('userId',$userId);
         }
 
+//        if($suisPasInscrit){
+//            $tempQuery = $this->createQueryBuilder('so')
+//                ->leftjoin('so.participants', 'pa')
+//                ->andWhere('pa.id = :userId');
+//            $query = $query
+//                ->andWhere('pa.id NOT IN ('.$tempQuery->getDQL().')')
+//                ->setParameter('userId',$userId);
+//            dd("apres temp query") ;
+//
+//        }
+
         if($suisPasInscrit){
+            $tempsQuery = $this->createQueryBuilder('sortie')
+                ->select('sortie.id')
+                ->leftjoin('sortie.participants', 'participant')
+                ->andWhere('participant.id = :userId');
 
             $query = $query
-                ->innerJoin('so.participants', 'pa')
-                ->andWhere('pa.id NOT IN (:userId)')
+                ->andWhere('so.id NOT IN ('.$tempsQuery->getDQL().')')
                 ->setParameter('userId',$userId);
         }
 
