@@ -1,5 +1,6 @@
 {{ form_start(form) }}
   {{ form_widget(form) }}
-  <button class="btn">{{ button_label|default('Ajouter') }}</button>
+<a href="{{ path('app_lieu_new') }}"><div class="plus_sign"><i class="fa-solid fa-circle-plus"></i></div></a>
+<button class="btn">{{ button_label|default('Ajouter') }}</button>
 
 {{ form_end(form) }}

@@ -8,13 +8,14 @@
         <li>{{ sortie.site.nom }}</li>
         <li>{{ sortie.lieu.nom }}</li>
     </ul>
-    <form action="" method="post">
-        <input type="text" name="id" hidden value="{{ sortie.id }}">
-        <label for="motif">Motif d'annulation</label>
-        <textarea name="motif" id="motif" placeholder="Motif d'annulation" cols="20" rows="2"></textarea>
-        <input type="button" value="enregistrer">
-
-{#        <button class="btn">{{ button_label | default('Enregistrer') }}</button>#}
-    </form>
-
+{#    <form action="" method="post">#}
+{#        <input type="text" name="id" hidden value="{{ sortie.id }}">#}
+{#        <label for="motif">Motif d'annulation</label>#}
+{#        <textarea name="motif" id="motif" placeholder="Motif d'annulation" cols="20" rows="2"></textarea>#}
+{#        <input type="button" value="enregistrer">#}
+    {{ form_start(form) }}
+        <button class="btn">{{ button_label | default('Enregistrer') }}</button>
+{#        {{ form_row(form.infosSortie) }}#}
+    {{ form_end(form) }}
+{#    </form>#}
 {% endblock %}

@@ -102,3 +102,17 @@ header h5 {
     border:1px black solid;
     width:30%;
 }
+.motifAnnulation {
+    border:1px black solid;
+    width:30%;
+}
+.plus_sign {
+    color:black;
+    font-size: 3em;
+}
+
+/* CARTES ACCUEIL */
+.card {
+    background: linear-gradient(rgba(112, 89, 12, 0.7), rgba(40, 120, 130, 0.7));
+    height:65vh;
+}
