@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Participant;
 use App\Entity\Sortie;
 use App\Form\SortieAnnuleeType;
 use App\Form\SortieType;
@@ -29,11 +30,7 @@ class SortieController extends AbstractController
     ): Response
     {
         //ARCHIVAGE DES SORTIES TERMINEES DEPUIS +1 MOIS
-        $etatArchive = $etatRepository->findOneBy(
-            [
-                'id'=>7
-            ]
-        );
+        $etatArchive = $etatRepository->findOneBy(['id'=>7]);
         date_default_timezone_set('Europe/Paris');
         $dateNow = new \DateTime("now");
         $sorties = $sortieRepository->findAll();
@@ -47,7 +44,11 @@ class SortieController extends AbstractController
                 $entityManager->persist($sort);
                 $entityManager->flush();
             }
+
+            //Si date du jour >= date fin d'inscription = état:3
+            //Si date du jour
         }
+
 
         return $this->render('sortie/index.html.twig', [
             'sorties' => $sorties,
@@ -116,12 +117,11 @@ class SortieController extends AbstractController
         $sortie = new Sortie();
         $form = $this->createForm(SortieType::class, $sortie);
         $form->handleRequest($request);
+//        $sortieDebut = $sortie->getDateHeureDebut()->format('Y-m-d H:i:s');
+//        $sortieLimite = $sortie->getDateLimiteInscription()->format('Y-m-d H:i:s');
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $etat = $etatRepository->findOneBy([
-                'id'=>1
-
-            ]);
+            $etat = $etatRepository->findOneBy(['id'=>1]);
             $sortie->setEtatSortie($etat);
             $sortie->setOrganisateur($this->getUser());
             $sortie->setSite($this->getUser()->getSite());
@@ -140,8 +140,13 @@ class SortieController extends AbstractController
     #[Route('/details/{id}', name: 'app_sortie_show', methods: ['GET'])]
     public function show(Sortie $sortie): Response
     {
+
+        $participant = $sortie->getParticipants();
+
         return $this->render('sortie/show.html.twig', [
             'sortie' => $sortie,
+            'participant'=>$participant
+
         ]);
     }
 
@@ -170,7 +175,6 @@ class SortieController extends AbstractController
     {
         $form = $this->createForm(SortieAnnuleeType::class, $sortieAnulee);
         $form->handleRequest($request);
-//        dd($sortieAnulee);
         if ($form->isSubmitted() && $form->isValid()) {
             $etat = $etatRepository->findOneBy(['id'=> 6]);
             $sortieAnulee->setEtatSortie($etat);

@@ -7,36 +7,40 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Nom</th>
-                <td>{{ sortie.nom }}</td>
-            </tr>
-            <tr>
-                <th>Date et heure de début</th>
-                <td>{{ sortie.dateHeureDebut ? sortie.dateHeureDebut|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Durée</th>
-                <td>{{ sortie.duree }}</td>
-            </tr>
-            <tr>
-                <th>Date limite d'inscription</th>
-                <td>{{ sortie.dateLimiteInscription ? sortie.dateLimiteInscription|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Nombre max d'inscrits</th>
-                <td>{{ sortie.nbInscriptionsMax }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ sortie.infosSortie }}</td>
-            </tr>
-            <tr>
-                <th>Etat</th>
-                <td>{{ sortie.etatSortie.libelle }}</td>
-            </tr>
+        <tr>
+            <th>Nom</th>
+            <td>{{ sortie.nom }}</td>
+        </tr>
+        <tr>
+            <th>Date et heure de début</th>
+            <td>{{ sortie.dateHeureDebut ? sortie.dateHeureDebut|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Durée</th>
+            <td>{{ sortie.duree }}</td>
+        </tr>
+        <tr>
+            <th>Date limite d'inscription</th>
+            <td>{{ sortie.dateLimiteInscription ? sortie.dateLimiteInscription|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Nombre max d'inscrits</th>
+            <td>{{ sortie.nbInscriptionsMax }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ sortie.infosSortie }}</td>
+        </tr>
+        <tr>
+            <th>Etat</th>
+            <td>{{ sortie.etatSortie.libelle }}</td>
+        </tr>
         </tbody>
     </table>
+            <h2>Participants</h2>
+            {% for part in participant %}
+                <p><a href="#">{{ part.nom }}</a></p>
+            {% endfor %}
 
     <a href="{{ path('app_sortie_index') }}">back to list</a>
 
