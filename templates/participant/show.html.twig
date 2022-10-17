@@ -37,6 +37,7 @@
             </tr>
             </tbody>
         </table>
+        <p><a href="{{ path("app_forgot_password_request") }}">MDP oublié</a></p>
         {% if app.user.administrateur %}
             <a href="{{ path('app_participant_index') }}">Index</a><br>
         {% endif %}
