@@ -19,7 +19,6 @@ class SortieType extends AbstractType
         $builder
             ->add('nom', null,
                 [
-                    'empty_data' => ''
                 ])
             ->add('dateHeureDebut', null,
                 [
@@ -27,7 +26,6 @@ class SortieType extends AbstractType
                 ])
             ->add('duree', null,
                 [
-                    'empty_data' => ''
                 ])
             ->add('dateLimiteInscription', null,
                 [
@@ -35,26 +33,21 @@ class SortieType extends AbstractType
                 ])
             ->add('nbInscriptionsMax',null,
                 [
-                    'empty_data' => ''
                 ])
             ->add('infosSortie', TextareaType::class,
                 [
-                    'empty_data' => '',
                     "attr"=>["class"=>"motifAnnulation"]
                 ])
             ->add('image',null,
                 [
-                    'empty_data' => ''
                 ])
             ->add('lieu', EntityType::class,
                 [
-                    'empty_data' => '',
                     'class'=>Lieu::class,
                     "choice_label"=>"nom",
                     "attr"=>["class"=>"lieu_ajout"]
                 ]
             )
-
         ;
     }
 
