@@ -102,3 +102,11 @@ header h5 {
     border:1px black solid;
     width:30%;
 }
+.motifAnnulation {
+    border:1px black solid;
+    width:30%;
+}
+.plus_sign {
+    color:black;
+    font-size: 3em;
+}
