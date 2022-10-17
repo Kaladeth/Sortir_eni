@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SortieRepository::class)]
 #[Vich\Uploadable]
@@ -24,12 +25,18 @@ class Sortie
     private ?string $nom = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    /**
+     * @Assert\Type("\DateTimeInterface")
+     */
     private ?\DateTimeInterface $dateHeureDebut = null;
 
     #[ORM\Column]
     private ?int $duree = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    /**
+     * @Assert\Type("\DateTimeInterface")
+     */
     private ?\DateTimeInterface $dateLimiteInscription = null;
 
     #[ORM\Column]
@@ -261,4 +268,3 @@ class Sortie
         return $this->imageSize;
     }
 }
-

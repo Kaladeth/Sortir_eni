@@ -15,18 +15,14 @@ class SortieAnnuleeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('infosSortie')
 //            ->add('nom')
 //            ->add('dateHeureDebut')
 //            ->add('duree')
 //            ->add('dateLimiteInscription')
 //            ->add('nbInscriptionsMax')
-            ->add('infosSortie')
 //            ->add('image')
-//            ->add('lieu', EntityType::class,
-//                [
-//                    'class'=>Lieu::class,
-//                    "choice_label"=>"nom",
-//                ])
+//            ->add('lieu')
 //            ->add('etatSortie')
 //            ->add('site')
 //            ->add('participants')

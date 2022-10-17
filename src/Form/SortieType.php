@@ -3,13 +3,18 @@
 namespace App\Form;
 
 use App\Entity\Lieu;
+use App\Entity\Site;
 use App\Entity\Sortie;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints\GreaterThan;
 
 class SortieType extends AbstractType
 {
@@ -18,13 +23,16 @@ class SortieType extends AbstractType
         $builder
             ->add('nom', null,
                 [
+
                 ])
             ->add('dateHeureDebut', null,
                 [
-                    "attr"=>["class"=>"dhd_ajout"]
-                ])
-            ->add('duree', null,
-                [
+                    "attr"=>["class"=>"dhd_ajout"],
+//                    'constraints'=>
+//                    [
+//                        new DateTime()
+//                    ]
+
                 ])
             ->add('dateLimiteInscription', null,
                 [
