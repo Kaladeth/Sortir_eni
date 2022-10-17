@@ -39,6 +39,10 @@ class Lieu
         $this->sorties = new ArrayCollection();
     }
 
+    public function __toString(){
+        return $this->getNom();
+    }
+
 
     public function getId(): ?int
     {

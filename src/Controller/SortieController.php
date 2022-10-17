@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Services\SortieFiltres;
+use App\Services\ParticipantsCsvFileService;
 
 #[Route('/sortie')]
 class SortieController extends AbstractController
@@ -57,11 +57,11 @@ class SortieController extends AbstractController
 
     //METHODE POUR APPLICATION DES FILTRES
     #[Route('/filtres', name: 'app_sortie_index_filtre', methods: ['POST'])]
-    public function indexFiltre(SortieRepository $sortieRepository,
-                                SortieFiltres $sortieFiltres,
-                                SiteRepository $siteRepository,
-                                ParticipantRepository $participantRepository,
-                                Request $request
+    public function indexFiltre(SortieRepository           $sortieRepository,
+                                ParticipantsCsvFileService $sortieFiltres,
+                                SiteRepository             $siteRepository,
+                                ParticipantRepository      $participantRepository,
+                                Request                    $request
     ): Response
     {
         //GESTION DES FILTRES

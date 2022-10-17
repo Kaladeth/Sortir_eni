@@ -1,0 +1,3 @@
+id,email,roles,password,nom,prenom,telephone,administrateur,actif,site_id
+8,user8@user8.fr,"[""ROLE_USER""]",user,user8,user8NOM,1234567894,0,1,1
+9,user9@user9.fr,"[""ROLE_USER""]",$2y$13$kUH9j1LWonJAmcB8zTOmAujTuefHEsrzpNQZSbjZweDvf8IyrgA2u,user9,user9NOM,0554872451,0,1,1
