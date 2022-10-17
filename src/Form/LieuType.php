@@ -21,7 +21,7 @@ class LieuType extends AbstractType
             ->add('ville', EntityType::class,
                 [
                     "class"=>Ville::class,
-                    "choice_label"=>"nom"
+                    "choice_label"=>strtoupper("nom")
                 ])
         ;
     }
