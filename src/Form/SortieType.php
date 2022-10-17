@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-use App\Entity\Categorie;
 use App\Entity\Lieu;
 use App\Entity\Site;
 use App\Entity\Sortie;
