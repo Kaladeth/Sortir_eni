@@ -90,16 +90,16 @@
         <div class="ms-5 me-5">
             <table class="table">
                 <thead>
-                    <tr>
-                        <th>Nom de la sortie</th>
-                        <th>Date de la sortie</th>
-                        <th>Clôture</th>
-                        <th>Places</th>
-                        <th>État</th>
-                        <th>Inscrit</th>
-                        <th>Organisateur</th>
-                        <th>Actions</th>
-                    </tr>
+                <tr>
+                    <th>Nom de la sortie</th>
+                    <th>Date de la sortie</th>
+                    <th>Clôture</th>
+                    <th>Places</th>
+                    <th>État</th>
+                    <th>Inscrit</th>
+                    <th>Organisateur</th>
+                    <th>Actions</th>
+                </tr>
                 </thead>
                 <tbody>
                 {% for sortie in sorties %}
@@ -122,12 +122,12 @@
                                 {# UNIQUEMENT UTILISATEUR PARTICIPANT ET SORTIE OUVERTE OU CLOTUREE #}
                                 {% if app.user in sortie.participants %}
                                     {% if sortie.etatSortie.id == 2 or sortie.etatSortie.id == 3 %}
-                                         - <a href="{{ path('app_participant_del_sortie', {'id': sortie.id}) }}">Se désinscrire</a>
+                                        - <a href="{{ path('app_participant_del_sortie', {'id': sortie.id}) }}">Se désinscrire</a>
                                     {% endif %}
-                                {# UNIQUEMENT UTILISATEUR NON PARTICIPANT ET SORTIE OUVERTE #}
+                                    {# UNIQUEMENT UTILISATEUR NON PARTICIPANT ET SORTIE OUVERTE #}
                                 {%  else %}
                                     {% if sortie.etatSortie.id == 2 %}
-                                         - <a href="{{ path('app_participant_add_sortie', {'id': sortie.id}) }}">S'inscrire</a>
+                                        - <a href="{{ path('app_participant_add_sortie', {'id': sortie.id}) }}">S'inscrire</a>
                                     {% endif %}
                                 {% endif %}
                             {% endif %}
@@ -145,11 +145,7 @@
                                     <a href="{{ path('app_sortie_edit', {'id': sortie.id}) }}">Modifier</a>
                                     - <a href="{{ path('app_sortie_cancel', {'id': sortie.id}) }}">Annuler</a>
                                 {% endif %}
-
-
                             {% endif %}
-
-
                         </td>
                     </tr>
                 {% else %}

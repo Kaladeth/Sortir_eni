@@ -31,6 +31,9 @@
                         <a href="{{ path('app_participant_show', {'id': participant.id}) }}">Details</a><br>
                         <a href="{{ path('app_participant_edit', {'id': participant.id}) }}">Editer</a>
                     </td>
+                    <td>
+                        <img src="{{ asset('/img/uploads/' ~ participant.getImageName()) }}" alt="pouet">
+                    </td>
                 </tr>
             {% else %}
                 <tr>
