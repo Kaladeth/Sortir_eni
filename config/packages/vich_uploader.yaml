@@ -13,6 +13,15 @@ vich_uploader:
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true
+
+#            users:
+#                uri_prefix: /img/uploads/users
+#                upload_destination: '%kernel.project_dir%/public/img/uploads/users'
+#                namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+#
+#                inject_on_load: false
+#                delete_on_update: true
+#                delete_on_remove: true
     #mappings:
     #    products:
     #        uri_prefix: /images/products

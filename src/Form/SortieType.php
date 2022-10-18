@@ -9,10 +9,13 @@ use App\Entity\Sortie;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints\GreaterThan;
 
 class SortieType extends AbstractType
 {
@@ -25,6 +28,7 @@ class SortieType extends AbstractType
             ->add('dateHeureDebut', null,
                 [
                     "attr"=>["class"=>"dhd_ajout"],
+
                     "label"=>"Date et heure de la sortie"
                 ])
             ->add('duree', null,
