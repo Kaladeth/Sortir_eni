@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/participant')]
 class ParticipantController extends AbstractController
 {
+    //AFFICHER TOUS LES PARTICIPANTS
     #[Route('/', name: 'app_participant_index', methods: ['GET'])]
     public function index(ParticipantRepository $participantRepository): Response
     {
@@ -23,6 +24,7 @@ class ParticipantController extends AbstractController
         ]);
     }
 
+    //CREER UN NOUVEAU PARTICIPANT
     #[Route('/new', name: 'app_participant_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ParticipantRepository $participantRepository): Response
     {
@@ -42,7 +44,8 @@ class ParticipantController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_participant_show', methods: ['GET'])]
+    //AFFICHER LE DETAIL D'UN PARTICIPANT
+    #[Route('/detail/{id}', name: 'app_participant_show', methods: ['GET'])]
     public function show(Participant $participant): Response
     {
         return $this->render('participant/show.html.twig', [
@@ -50,6 +53,7 @@ class ParticipantController extends AbstractController
         ]);
     }
 
+    //MODIFIER UN PARTICIPANT
     #[Route('/{id}/edit', name: 'app_participant_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Participant $participant, ParticipantRepository $participantRepository): Response
     {
@@ -68,6 +72,7 @@ class ParticipantController extends AbstractController
         ]);
     }
 
+    //SUPPRIMER UN PARTICIPANT
     #[Route('/{id}', name: 'app_participant_delete', methods: ['POST'])]
     public function delete(Request $request, Participant $participant, ParticipantRepository $participantRepository): Response
     {

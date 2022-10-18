@@ -81,6 +81,10 @@ class Sortie
         $this->participants = new ArrayCollection();
     }
 
+    public function __toString(){
+        return $this->getNom();
+    }
+
 
     public function getId(): ?int
     {
@@ -111,7 +115,7 @@ class Sortie
         return $this;
     }
 
-    public function getDuree(): ?int0
+    public function getDuree(): ?int
     {
         return $this->duree;
     }

@@ -15,7 +15,7 @@ class ParticipantsCsvFileController extends AbstractController
     ): Response
     {
 
-        $participantCsv->createParticipants('participants.csv');
+        //$participantCsv->createParticipants('participants.csv');
 
         return $this->render('admin/participants_csv.html.twig');
     }
