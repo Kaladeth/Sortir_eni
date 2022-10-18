@@ -311,4 +311,8 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->imageSize;
     }
 
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt) : void {
+        $this->updatedAt = $updatedAt ;
+    }
+
 }

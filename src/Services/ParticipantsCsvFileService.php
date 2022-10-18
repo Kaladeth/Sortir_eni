@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Entity\Participant;
 use App\Repository\ParticipantRepository;
 use App\Repository\SiteRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Serializer\Encoder\CsvEncoder;
@@ -35,15 +36,14 @@ class ParticipantsCsvFileService
         $this->siteRepository = $siteRepository;
     }
 
-    public function getDataFromFile(string $fileName):array{
-        $file = $this->dataDirectory.$fileName;
+    public function getDataFromFile($file):array{
         $fileExtension = pathinfo($file, PATHINFO_EXTENSION);
         $normalizers = [new ObjectNormalizer()];
         $encoders = [new CsvEncoder()];
         $serializer = new Serializer($normalizers, $encoders);
         /** @var $fileString */
         $fileString = file_get_contents($file);
-        $data = $serializer->decode($fileString, $fileExtension);
+        $data = $serializer->decode($fileString, "csv");
 
         //TENIR COMPTE STRUCTURE TABLEAU
         if (array_key_exists('results', $data)){
@@ -62,6 +62,7 @@ class ParticipantsCsvFileService
                 $participant = $this->participantRepository->findOneBy([
                     'email' => $row['email']
                 ]);
+
                 if (!$participant){
                     $site = $this->siteRepository->findOneBy(['id'=>$row['site_id']]);
 ;                   $participant = new Participant();
@@ -76,7 +77,17 @@ class ParticipantsCsvFileService
                                 ->setTelephone($row['telephone'])
                                 ->setAdministrateur($row['administrateur'])
                                 ->setActif($row['actif'])
-                                ->setSite($site);
+                                ->setSite($site)
+                                ->setImageName($row['image_name']);
+                    $participant->setImageSize($row['image_size']);
+
+                    date_default_timezone_set('Europe/Paris');
+                    $dateNow = new \DateTime("now");
+                    $participant->setUpdatedAt($dateNow);
+
+
+
+
                     $this->entityManager->persist($participant);
                     $participantsCrees ++;
                 }
