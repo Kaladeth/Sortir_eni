@@ -5,47 +5,22 @@
 {% block body %}
     <div class="forms">
         <h1>Participant</h1>
-        <table class="table">
-            <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ participant.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ participant.email }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ participant.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ participant.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Telephone</th>
-                <td>{{ participant.telephone }}</td>
-            </tr>
-            <tr>
-                <th>Administrateur</th>
-                <td>{{ participant.administrateur ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Actif</th>
-                <td>{{ participant.actif ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <td><img src="img/uploads/{{ participant.imageName }}" alt="img_profil"></td>
-            </tr>
-            </tbody>
-        </table>
-        <p><a href="{{ path("app_forgot_password_request") }}">MDP oublié</a></p>
-        {% if app.user.administrateur %}
-            <a href="{{ path('app_participant_index') }}">Index</a><br>
-        {% endif %}
-        <a href="{{ path('app_participant_edit', {'id': participant.id}) }}">Editer</a>
 
-        {{ include('participant/_delete_form.html.twig') }}
+        {{ participant.id }}
+        {{ participant.email }}
+        {{ participant.nom }}
+        {{ participant.prenom }}
+        {{ participant.telephone }}
+        {{ participant.administrateur ? 'Yes' : 'No' }}
+        {{ participant.actif ? 'Yes' : 'No' }}
+        <img src="{{ asset('/img/uploads/' ~ participant.getImageName()) }}" alt="img_profil">
+
+
+
+        {% if app.user.id == participant.id %}
+            <a class="btn btn-primary" href="{{ path("app_forgot_password_request") }}">Récupérer mon mot de passe</a>
+            <a class="btn btn-primary" href="{{ path('app_participant_edit', {'id': participant.id}) }}">Modifier mon profil</a>
+        {% endif %}
+
     </div>
 {% endblock %}
