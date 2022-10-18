@@ -28,16 +28,13 @@ class SortieType extends AbstractType
             ->add('dateHeureDebut', null,
                 [
                     "attr"=>["class"=>"dhd_ajout"],
-//                    'constraints'=>
-//                    [
-//                        new DateTime()
-//                    ]
 
                 ])
             ->add('dateLimiteInscription', null,
                 [
                     "attr"=>["class"=>"dli_ajout"]
                 ])
+            ->add('duree')
             ->add('nbInscriptionsMax',null,
                 [
                 ])

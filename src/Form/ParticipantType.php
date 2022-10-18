@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ParticipantType extends AbstractType
 {
@@ -24,14 +25,19 @@ class ParticipantType extends AbstractType
                     "class"=>Site::class,
                     "choice_label"=>"nom"
                 ])
+
             ->add('sorties', EntityType::class,
                 [
                     "class"=>Sortie::class,
                     "choice_label"=>"nom",
                     "multiple"=>true
                 ])
-//            ->add('administrateur')
-//            ->add('actif')
+            ->add('imageFile',VichImageType::class,
+                [
+                ])
+
+            //            ->add('administrateur')
+            //            ->add('actif')
 
         ;
     }

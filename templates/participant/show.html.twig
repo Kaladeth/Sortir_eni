@@ -35,6 +35,9 @@
                 <th>Actif</th>
                 <td>{{ participant.actif ? 'Yes' : 'No' }}</td>
             </tr>
+            <tr>
+                <td><img src="img/uploads/{{ participant.imageName }}" alt="img_profil"></td>
+            </tr>
             </tbody>
         </table>
         <p><a href="{{ path("app_forgot_password_request") }}">MDP oublié</a></p>
