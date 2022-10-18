@@ -81,7 +81,7 @@
                     </div>
 
                     <div class="col-3 align-self-center">
-                        <input class=" btn  btn-light btn-lg" type="submit" value="Filter">
+                        <input class=" btn  btn-light btn-lg" type="submit" value="Rechercher">
                     </div>
                 </div>
             </form>
@@ -150,14 +150,15 @@
                     </tr>
                 {% else %}
                     <tr>
-                        <td colspan="10">no records found</td>
+                        <td colspan="10">Aucune sortie trouvée</td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
         </div>
-        <div>
-            <a href="{{ path('app_sortie_new') }}"><button class="btn-info">Créer une nouvelle sortie</button></a>
+        <div class="d-none d-sm-block">
+            <a href="{{ path('app_sortie_new') }}"><button class="btn-info" >Créer une nouvelle sortie</button></a>
+            <a href="{{ path('app_participant_index') }}"><button class="btn-info" >Voir les autres participants</button></a>
         </div>
     </div>
 

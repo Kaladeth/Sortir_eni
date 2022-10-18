@@ -117,3 +117,29 @@ header h5 {
     background: linear-gradient(rgba(112, 89, 12, 0.7), rgba(40, 120, 130, 0.7));
     height:65vh;
 }
+
+/* FOOTER */
+footer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border:1px grey solid;
+    padding-left:0;
+    background: linear-gradient(rgba(0,30,120,0.4), rgba(110,110,110,0.4));
+}
+
+footer p {
+    margin-bottom: 0;
+}
+footer a {
+    color:rgba(0,30,120,0.4);
+}
+footer a:hover {
+    color:black
+}
+
+/* BLACKNESS */
+#blackness {
+    background-color: black;
+    height:100vh;
+}

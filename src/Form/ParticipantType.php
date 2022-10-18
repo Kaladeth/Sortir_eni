@@ -30,7 +30,8 @@ class ParticipantType extends AbstractType
                 [
                     "class"=>Sortie::class,
                     "choice_label"=>"nom",
-                    "multiple"=>true
+                    "multiple"=>true,
+                    "required"=>false
                 ])
             ->add('imageFile',VichImageType::class,
                 [

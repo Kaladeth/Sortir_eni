@@ -29,7 +29,9 @@
                     <td>{{ participant.actif ? 'Yes' : 'No' }}</td>
                     <td>
                         <a href="{{ path('app_participant_show', {'id': participant.id}) }}">Details</a><br>
+                        {% if app.user.id is same as participant.id %}
                         <a href="{{ path('app_participant_edit', {'id': participant.id}) }}">Editer</a>
+                        {% endif %}
                     </td>
                     <td>
                         <img src="{{ asset('/img/uploads/' ~ participant.getImageName()) }}" alt="pouet">
@@ -43,5 +45,6 @@
             </tbody>
         </table>
     </div>
+
     <a href="{{ path('app_participant_new') }}">Create new</a>
 {% endblock %}

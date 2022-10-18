@@ -20,4 +20,17 @@ class MainController extends AbstractController
             'controller_name' => 'MainController',
         ]);
     }
+
+    #[Route('/erro???r??????', name: 'black')]
+    public function black(
+        SortieRepository $sortieRepository
+    ): Response
+    {
+        $sorties = $sortieRepository->findAll();
+        return $this->render('main/black.html.twig', [
+            "sorties" => $sorties,
+            'controller_name' => 'MainController',
+        ]);
+    }
+
 }
