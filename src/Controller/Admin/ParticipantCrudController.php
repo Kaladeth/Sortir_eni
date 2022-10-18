@@ -33,12 +33,12 @@ class ParticipantCrudController extends AbstractCrudController
             BooleanField::new('actif', 'En activité'),
             AssociationField::new('site', 'Site'),
             AssociationField::new('sorties', 'Sorties'),
-            AssociationField::new('sortiesOrganisees', 'Sorties Organisées')
-//            ImageField::new('imageName')
-//                ->setBasePath('img/uploads/')
-//                ->setUploadDir('public/img/uploads/')
-//                ->hideOnForm(),
-//            TextareaField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex()
+            AssociationField::new('sortiesOrganisees', 'Sorties Organisées'),
+            ImageField::new('imageName')
+                ->setBasePath('img/uploads/')
+                ->setUploadDir('public/img/uploads/')
+                ->hideOnForm(),
+            TextareaField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex()
         ];
     }
 }

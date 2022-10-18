@@ -46,20 +46,8 @@ class ParticipantController extends AbstractController
 
     //AFFICHER LE DETAIL D'UN PARTICIPANT
     #[Route('/detail/{id}', name: 'app_participant_show', methods: ['GET'])]
-    public function show(Participant $participant,
-                         int $id,
-                         ParticipantRepository $participantRepository
-    ): Response
+    public function show(Participant $participant): Response
     {
-        $user = $participantRepository->findOneBy(['email' => $this->getUser()->getUserIdentifier()]) ;
-        $userId = $user->getId();
-//        dd($id);
-//        if ($userId != $id)
-//        {
-//            return $this->render('main/index.html.twig', [
-//                'participant' => $participant,
-//            ]);
-//        }
 
         return $this->render('participant/show.html.twig', [
             'participant' => $participant,

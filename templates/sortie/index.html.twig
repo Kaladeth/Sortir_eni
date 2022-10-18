@@ -114,7 +114,7 @@
                                 <img src="{{ asset('img/coche.png') }}" width="20px" alt="yes">
                             {% endif %}
                         </td>
-                        <td>{{ sortie.organisateur.prenom }} {{ sortie.organisateur.nom }}</td>
+                        <td><a href="{{ path('app_participant_show', {'id':sortie.organisateur.id}) }}">{{ sortie.organisateur.prenom }} {{ sortie.organisateur.nom }}</a></td>
                         <td>
                             {# UNIQUEMENT UTILISATEUR NON ORGANISATEUR#}
                             {% if app.user.id != sortie.organisateur.id %}
