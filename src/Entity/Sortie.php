@@ -111,7 +111,7 @@ class Sortie
         return $this;
     }
 
-    public function getDuree(): ?int
+    public function getDuree(): ?int0
     {
         return $this->duree;
     }

@@ -87,28 +87,29 @@ header h5 {
     background-color: red;
 }
 #ajout_sortie input {
-    width:30%;
     border:1px solid black;
 }
 .dhd_ajout {
     border:1px black solid;
-    width:30%;
 }
 .dli_ajout {
     border:1px black solid;
-    width:30%;
 }
 .lieu_ajout {
     border:1px black solid;
-    width:30%;
 }
 .motifAnnulation {
     border:1px black solid;
-    width:30%;
 }
 .plus_sign {
     color:black;
-    font-size: 3em;
+    font-size: 2em;
+}
+#sortie_lieu {
+    margin-left:9px;
+}
+#lieu_bloc i {
+    margin-top:3px;
 }
 
 /* CARTES ACCUEIL */
