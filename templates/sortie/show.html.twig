@@ -37,10 +37,18 @@
         </tr>
         </tbody>
     </table>
-            <h2>Participants</h2>
-            {% for part in participant %}
-                <p><a href="#">{{ part.nom }}</a></p>
-            {% endfor %}
+    <h2>Participants</h2>
+    <table class="table table-striped">
+
+        {% for part in participant %}
+            <tr>
+                <td><a href="{{ path('app_participant_show', {'id': part.id}) }}">{{ part.nom }}</a></td>
+                <td><a href="{{ path('app_participant_show', {'id': part.id}) }}">{{ part.prenom }}</a></td>
+            </tr>
+
+        {% endfor %}
+    </table>
+
 
     <a href="{{ path('app_sortie_index') }}">back to list</a>
 

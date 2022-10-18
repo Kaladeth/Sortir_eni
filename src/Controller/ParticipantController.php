@@ -58,11 +58,22 @@ class ParticipantController extends AbstractController
     #[Route('/{id}/edit', name: 'app_participant_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Participant $participant, ParticipantRepository $participantRepository): Response
     {
-        $form = $this->createForm(ParticipantType::class, $participant);
-        $form->handleRequest($request);
+
+        if($this->getUser() === $participant) {
+            $form = $this->createForm(ParticipantType::class, $participant);
+            $form->handleRequest($request);
+        }
+        else {
+            $this->addFlash(
+                'notice',
+                'Vous ne pouvez pas modifier la page d\'un autre utilisateur !!'
+            );
+            return $this->redirectToRoute('accueil_main', [], Response::HTTP_SEE_OTHER);
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $participantRepository->save($participant, true);
+            $participant->setImageFile(null);
 
             return $this->redirectToRoute('app_participant_index', [], Response::HTTP_SEE_OTHER);
         }

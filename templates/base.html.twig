@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -51,5 +52,9 @@
 </header>
 {% block body %}
 {% endblock %}
+<footer>
+    <p><i class="fa-solid fa-copyright mx-4"></i>Maxime PHELINE, Yohann DOUCET, Esteban JARDIN</p>
+    <a href="{{ path('black') }}"><i class="fa-solid fa-door-closed"></i></a>
+</footer>
 </body>
 </html>

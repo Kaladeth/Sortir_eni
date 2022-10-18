@@ -30,12 +30,45 @@ class SortieController extends AbstractController
     ): Response
     {
         //ARCHIVAGE DES SORTIES TERMINEES DEPUIS +1 MOIS
+        $etatCloture = $etatRepository->findOneBy(['id'=>3]);
+        $etatEnCours = $etatRepository->findOneBy(['id'=>4]);
+        $etatPasse = $etatRepository->findOneBy(['id'=>5]);
         $etatArchive = $etatRepository->findOneBy(['id'=>7]);
         date_default_timezone_set('Europe/Paris');
         $dateNow = new \DateTime("now");
         $sorties = $sortieRepository->findAll();
         foreach ($sorties as $sort)
         {
+
+            //etat cloture
+            $dateLimite = $sort->getDateLimiteInscription();
+            if ($dateLimite>$dateNow){
+                $sort->setEtatSortie($etatCloture);
+                $entityManager->persist($sort);
+                $entityManager->flush();
+            }
+
+            //etat en cours
+            $dureeEnCours = $sort->getDuree();
+            $sortieEnCoursDebut = clone $sort->getDateHeureDebut();
+            $sortieEnCoursFin = $sortieEnCoursDebut->modify('+'.$dureeEnCours.' minutes');
+            if ($dateNow >= $sortieEnCoursDebut && $sortieEnCoursFin>$dateNow){
+                $sort->setEtatSortie($etatEnCours);
+                $entityManager->persist($sort);
+                $entityManager->flush();
+            }
+
+            //etat passé
+            $duree = $sort->getDuree();
+            $sortiePassee = clone $sort->getDateHeureDebut();
+            $sortiePassee->modify('+'. $duree . ' minutes' );
+            if ($sortiePassee<$dateNow){
+                $sort->setEtatSortie($etatPasse);
+                $entityManager->persist($sort);
+                $entityManager->flush();
+            }
+
+            //etat archive
             $finDeSortie = clone $sort->getDateHeureDebut();
             $finDeSortie->add(new \DateInterval('PT745H'));
             $finDeSortie->add(new \DateInterval('PT'.$sort->getDuree().'M'));
@@ -46,7 +79,6 @@ class SortieController extends AbstractController
             }
 
             //Si date du jour >= date fin d'inscription = état:3
-            //Si date du jour
         }
 
 
