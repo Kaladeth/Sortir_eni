@@ -43,6 +43,7 @@ class ParticipantType extends AbstractType
 
             //            ->add('administrateur')
             //            ->add('actif')
+
         ;
     }
 

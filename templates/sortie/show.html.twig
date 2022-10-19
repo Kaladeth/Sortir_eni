@@ -12,66 +12,70 @@
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
             integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
             crossorigin=""></script>
+    <main id="details_sortie">
+        <div class="container-fluid">
+            <h1>Sortie</h1>
 
-    <h1>Sortie</h1>
-
-    <table class="table">
-        <tbody>
-        <tr>
-            <th>Nom</th>
-            <td>{{ sortie.nom }}</td>
-        </tr>
-        <tr>
-            <th>Date et heure de début</th>
-            <td>{{ sortie.dateHeureDebut ? sortie.dateHeureDebut|date('Y-m-d H:i:s') : '' }}</td>
-        </tr>
-        <tr>
-            <th>Durée</th>
-            <td>{{ sortie.duree }}</td>
-        </tr>
-        <tr>
-            <th>Date limite d'inscription</th>
-            <td>{{ sortie.dateLimiteInscription ? sortie.dateLimiteInscription|date('Y-m-d H:i:s') : '' }}</td>
-        </tr>
-        <tr>
-            <th>Nombre max d'inscrits</th>
-            <td>{{ sortie.nbInscriptionsMax }}</td>
-        </tr>
-        <tr>
-            <th>Description</th>
-            <td>{{ sortie.infosSortie }}</td>
-        </tr>
-        <tr>
-            <th>Etat</th>
-            <td>{{ sortie.etatSortie.libelle }}</td>
-        </tr>
-        </tbody>
-    </table>
-
-
-    <div class="container">
-        <div onload="init()" id="map">Ici la map</div>
-    </div>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ sortie.nom }}</td>
+                </tr>
+                <tr>
+                    <th>Date et heure de début</th>
+                    <td>{{ sortie.dateHeureDebut ? sortie.dateHeureDebut|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Durée</th>
+                    <td>{{ sortie.duree }}</td>
+                </tr>
+                <tr>
+                    <th>Date limite d'inscription</th>
+                    <td>{{ sortie.dateLimiteInscription ? sortie.dateLimiteInscription|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre max d'inscrits</th>
+                    <td>{{ sortie.nbInscriptionsMax }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ sortie.infosSortie }}</td>
+                </tr>
+                <tr>
+                    <th>Etat</th>
+                    <td>{{ sortie.etatSortie.libelle }}</td>
+                </tr>
+                </tbody>
+            </table>
 
 
-    <h2>Participants</h2>
-    <table class="table table-striped">
-
-        {% for part in participant %}
-            <tr>
-                <td><a href="{{ path('app_participant_show', {'id': part.id}) }}">{{ part.nom }}</a></td>
-                <td><a href="{{ path('app_participant_show', {'id': part.id}) }}">{{ part.prenom }}</a></td>
-            </tr>
-
-        {% endfor %}
-    </table>
+            <div class="container">
+                <div onload="init()" id="map">Ici la map</div>
+            </div>
 
 
-    <a href="{{ path('app_sortie_index') }}">back to list</a>
+            <h2>Participants</h2>
+            <table class="table table-striped">
 
-    <a href="{{ path('app_sortie_edit', {'id': sortie.id}) }}">edit</a>
+                {% for part in participant %}
+                    <tr>
+                        <td><a href="{{ path('app_participant_show', {'id': part.id}) }}">{{ part.nom }}</a></td>
+                        <td><a href="{{ path('app_participant_show', {'id': part.id}) }}">{{ part.prenom }}</a></td>
+                    </tr>
 
-    {{ include('sortie/_delete_form.html.twig') }}
+                {% endfor %}
+            </table>
+
+
+            <a href="{{ path('app_sortie_index') }}">back to list</a>
+
+            <a href="{{ path('app_sortie_edit', {'id': sortie.id}) }}">edit</a>
+
+            {{ include('sortie/_delete_form.html.twig') }}
+        </div>
+    </main>
+
 
 
     <script>
