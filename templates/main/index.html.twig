@@ -17,11 +17,11 @@
                 {% for sortie in sorties %}
                     <div class="col-4">
                         <div class="card" style="width: 100%;">
-                            <img src="img/uploads/{{ sortie.imageName }}" class="card-img-top" alt="...">
+                            <img src="img/uploads/{{ sortie.imageName }}" class="card-img-top mx-auto" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{ sortie.nom }}</h5>
                                 <p class="card-text">{{ sortie.infosSortie }}</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <a href="{{ path('app_sortie_show', {'id': sortie.id}) }}" class="btn btn-primary">Détails</a>
                             </div>
                         </div>
                     </div>

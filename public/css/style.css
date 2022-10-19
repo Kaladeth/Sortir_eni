@@ -201,21 +201,11 @@ header h5 {
     background: linear-gradient(rgba(112, 89, 12, 0.7), rgba(40, 120, 130, 0.7));
     height:65vh;
 }
-.card-img-top{
-    height:40%;
-    width:60%;
-    border-radius:50%;
-    margin: 0 auto;
-}
-
-/* CARTE AFFICHER PROFIL */
-#carte_part{
-    margin: 0 auto;
-}
-#photo_profil{
-    width: 100%;
-    height: 15vw;
-    object-fit: cover;
+.card-img-top {
+    border-radius: 50%;
+    width:50%;
+    height:50%;
+    margin-top:30px;
 }
 
 /* GERER PROFIL */
@@ -233,6 +223,19 @@ header h5 {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
 }
+
+/* RESET PASSWORD */
+#reset_pw {
+    padding-top:70px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
+    color:rgba(255, 255, 255, 0.8);
+}
+#reset_pw_block {
+    padding-top:70px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
+    color:rgba(255, 255, 255, 0.8);
+}
+
 /* SE CONNECTER */
 #login {
     padding-top:70px;
@@ -250,6 +253,19 @@ header h5 {
 
 /* ANNULER SORTIE */
 #annuler_sortie {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
+    color:rgba(255, 255, 255, 0.8);
+    padding-top:70px;
+}
+/* AJOUTER LIEU */
+#ajouter_lieu {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
+    color:rgba(255, 255, 255, 0.8);
+    padding-top:70px;
+}
+
+/* AJOUTER VILLE */
+#ajouter_ville {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
     padding-top:70px;
