@@ -41,7 +41,10 @@
                     {{ form_row(form.lieu) }}
                 </div>
                 <div class="col-1">
-                    <div class="plus_sign"><i class="fa-solid fa-circle-plus"></i></div>
+                    <a href="{{ path('app_lieu_new') }}">
+                        <div class="plus_sign"><i class="fa-solid fa-circle-plus"></i></div>
+                    </a>
+
                 </div>
             </div>
         </div>
@@ -50,10 +53,8 @@
 
 
 
-<a href="{{ path('app_lieu_new') }}">
 
-</a>
-<button class="btn">{{ button_label|default('Ajouter') }}</button>
+<button class="btn" id="btn_modouaj">{{ button_label|default('Ajouter') }}</button>
 
 {{ form_end(form) }}
 

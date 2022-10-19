@@ -3,172 +3,174 @@
 {% block title %}Sortie index{% endblock %}
 
 {% block body %}
-    <div id="liste_sorties">
-        <div class="container-fluid pt-4">
-            <div class="row justify-content-end">
-                <div class="col-9">
-                    <h1>Liste des sorties</h1>
-                </div>
-                <div class="col-3">
-                    <p class="fw-bold d-flex flex-row-reverse">Date du jour : {{ "now" | date("d/m/Y") }}</p>
-                    <p class="fw-bold d-flex flex-row-reverse">Participant : {{ app.user.nom }} - {{ app.user.prenom }}</p>
+    <main id="liste_sorties">
+        <div>
+            <div class="container-fluid pt-4">
+                <div class="row justify-content-end">
+                    <div class="col-9">
+                        <h1>Liste des sorties</h1>
+                    </div>
+                    <div class="col-3">
+                        <p class="fw-bold d-flex flex-row-reverse">Date du jour : {{ "now" | date("d/m/Y") }}</p>
+                        <p class="fw-bold d-flex flex-row-reverse">Participant : {{ app.user.nom }} - {{ app.user.prenom }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        {% for message in app.flashes('gestionInscriptions') %}
-            <div class="flash-notice">
-                <h4 class=" alert alert-info d-flex justify-content-center">{{ message }}</h4>
-            </div>
-        {% endfor %}
-
-        <div class="container-fluid" id="filter">
-            <h3>Filtrer les sorties</h3>
-            <form action="{{ path('app_sortie_index_filtre') }}" method="post">
-                <div class="row my-3">
-                    <div class="offset-1 col-4 pe-5">
-                        <div class="row">
-                            <div class=" d-flex justify-content-between">
-                                <label for="site_filter">Site : </label>
-                                <select name="site_filter" id="site_filter">
-                                    <option value="">Sélectionner le site</option>
-                                    {% for site in sites %}
-                                        dump
-                                        <option value="{{ site.nom }}"
-                                            {% if site.nom == app.request.get('site_filter') %}
-                                                selected
-                                            {% endif %}
-                                        >{{ site.nom }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="d-flex justify-content-between mt-3">
-                                <label for="word_filter">Le nom de la sortie contient : </label>
-                                <input type="search" value="{{app.request.get('word_filter')}}" name="word_filter" id="word_filter" size="30">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="d-flex justify-content-between mt-3">
-                                <label for="dateDebut_filter">Entre : </label>
-                                <input type="date" id="dateDebut_filter" name="dateDebut_filter"
-                                       value="{{app.request.get('dateDebut_filter')}}"
-                                       min="1999-01-01" max="2999-12-31">
-
-                                <label for="dateFin_filter"> et </label>
-                                <input type="date" id="dateFin_filter" name="dateFin_filter"
-                                       value="{{app.request.get('dateFin_filter')}}"
-                                       min="1999-01-01" max="2999-12-31">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-4 ps-5 justify-content-center">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="suisOrganisateur" name="suisOrganisateur" {% if app.request.get('suisOrganisateur') %} checked {% endif %}>
-                            <label class="form-check-label" for="suisOrganisateur">Sorties dont je suis l'organisateur/trice</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="suisInscrit" name="suisInscrit" {% if app.request.get('suisInscrit') %} checked {% endif %}>
-                            <label class="form-check-label" for="suisInscrit">Sorties auxquelles je suis inscrit(e)</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="suisPasInscrit" name="suisPasInscrit" {% if app.request.get('suisPasInscrit') %} checked {% endif %}>
-                            <label class="form-check-label" for="suisPasInscrit">Sorties auxquelles je ne suis pas inscrit(e)</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="sortiesPassees" name="sortiesPassees" {% if app.request.get('sortiesPassees') %} checked {% endif %}>
-                            <label class="form-check-label" for="sortiesPassees">Sorties passées depuis belle lurette ! </label>
-                        </div>
-                    </div>
-
-                    <div class="col-3 align-self-center">
-                        <input class=" btn  btn-light btn-lg" type="submit" value="Rechercher">
-                    </div>
+            {% for message in app.flashes('gestionInscriptions') %}
+                <div class="flash-notice">
+                    <h4 class=" alert alert-info d-flex justify-content-center">{{ message }}</h4>
                 </div>
-            </form>
-        </div>
+            {% endfor %}
 
-        <div class="ms-5 me-5">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Nom de la sortie</th>
-                    <th>Date de la sortie</th>
-                    <th>Clôture</th>
-                    <th>Places</th>
-                    <th>État</th>
-                    <th>Inscrit</th>
-                    <th>Organisateur</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
+            <div class="container-fluid" id="filter">
+                <h3>Filtrer les sorties</h3>
+                <form action="{{ path('app_sortie_index_filtre') }}" method="post">
+                    <div class="row my-3">
+                        <div class="offset-1 col-4 pe-5">
+                            <div class="row">
+                                <div class=" d-flex justify-content-between">
+                                    <label for="site_filter">Site : </label>
+                                    <select name="site_filter" id="site_filter">
+                                        <option value="" selected >Sélectionner un site</option>
+                                        {% for site in sites %}
+                                            <option value="{{ site.nom }}"
+                                                    {% if site.nom == app.request.get('site_filter') %}
+                                                        selected
+                                                    {% endif %}
+                                            >{{ site.nom }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="d-flex justify-content-between mt-3">
+                                    <label for="word_filter">Le nom de la sortie contient : </label>
+                                    <input type="search" value="{{app.request.get('word_filter')}}" name="word_filter" id="word_filter" size="30">
+                                </div>
+                            </div>
 
-                {% for sortie in sorties %}
+                            <div class="row">
+                                <div class="d-flex justify-content-between mt-3">
+                                    <label for="dateDebut_filter">Entre : </label>
+                                    <input type="date" id="dateDebut_filter" name="dateDebut_filter"
+                                           value="{{app.request.get('dateDebut_filter')}}"
+                                           min="1999-01-01" max="2999-12-31">
 
-                    {# UNIQUEMENT LES SORTIES NON ARCHIVEES SI PAS ADMIN #}
-                    {% if sortie.etatSortie.id != 7  %}
-                        <tr>
-                            <td>{{ sortie.nom }}</td>
-                            <td>{{ sortie.dateHeureDebut ? sortie.dateHeureDebut|date('d/m/Y à H:i') : '' }}</td>
-                            <td>{{ sortie.dateLimiteInscription ? sortie.dateLimiteInscription|date('d/m/Y') : '' }}</td>
-                            <td>{{ sortie.participants | length }} / {{ sortie.nbInscriptionsMax }}</td>
-                            <td>{{ sortie.etatSortie.libelle }}</td>
-                            <td>
-                                {% if app.user in sortie.participants %}
-                                    <img src="{{ asset('img/coche.png') }}" width="20px" alt="yes">
-                                {% endif %}
-                            </td>
-                            <td><a href="{{ path('app_participant_show', {'id':sortie.organisateur.id}) }}">{{ sortie.organisateur.prenom }} {{ sortie.organisateur.nom }}</a></td>
-                            <td>
-                                {# UNIQUEMENT UTILISATEUR NON ORGANISATEUR#}
-                                {% if app.user.id != sortie.organisateur.id %}
-                                    <a href="{{ path('app_sortie_show', {'id': sortie.id}) }}">Afficher</a>
-                                    {# UNIQUEMENT UTILISATEUR PARTICIPANT ET SORTIE OUVERTE OU CLOTUREE #}
-                                    {% if app.user in sortie.participants %}
-                                        {% if sortie.etatSortie.id == 2 or sortie.etatSortie.id == 3 %}
-                                            - <a href="{{ path('app_participant_del_sortie', {'id': sortie.id}) }}">Se désinscrire</a>
-                                        {% endif %}
-                                        {# UNIQUEMENT UTILISATEUR NON PARTICIPANT ET SORTIE OUVERTE #}
-                                    {%  else %}
-                                        {% if sortie.etatSortie.id == 2 %}
-                                            - <a href="{{ path('app_participant_add_sortie', {'id': sortie.id}) }}">S'inscrire</a>
-                                        {% endif %}
-                                    {% endif %}
-                                {% endif %}
+                                    <label for="dateFin_filter"> et </label>
+                                    <input type="date" id="dateFin_filter" name="dateFin_filter"
+                                           value="{{app.request.get('dateFin_filter')}}"
+                                           min="1999-01-01" max="2999-12-31">
+                                </div>
+                            </div>
+                        </div>
 
-                                {# UNIQUEMENT UTILISATEUR ORGANISATEUR#}
-                                {% if app.user.id == sortie.organisateur.id %}
+                        <div class="col-4 ps-5 justify-content-center">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="suisOrganisateur" name="suisOrganisateur" {% if app.request.get('suisOrganisateur') %} checked {% endif %}>
+                                <label class="form-check-label" for="suisOrganisateur">Sorties dont je suis l'organisateur/trice</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="suisInscrit" name="suisInscrit" {% if app.request.get('suisInscrit') %} checked {% endif %}>
+                                <label class="form-check-label" for="suisInscrit">Sorties auxquelles je suis inscrit(e)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="suisPasInscrit" name="suisPasInscrit" {% if app.request.get('suisPasInscrit') %} checked {% endif %}>
+                                <label class="form-check-label" for="suisPasInscrit">Sorties auxquelles je ne suis pas inscrit(e)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="sortiesPassees" name="sortiesPassees" {% if app.request.get('sortiesPassees') %} checked {% endif %}>
+                                <label class="form-check-label" for="sortiesPassees">Sorties passées depuis belle lurette ! </label>
+                            </div>
+                        </div>
 
-                                    {# UNIQUEMENT SORTIE ETAT CREEE #}
-                                    {% if sortie.etatSortie.id == 1 %}
-                                        <a href="{{ path('app_sortie_index_pub', {'id': sortie.id}) }}">Publier</a> -
-                                    {% endif %}
+                        <div class="col-3 align-self-center">
+                            <input class=" btn  btn-light btn-lg" type="submit" value="Rechercher">
+                        </div>
+                    </div>
+                </form>
+            </div>
 
-                                    {# UNIQUEMENT SORTIES ETATS OUVERT OU CLOTUREE #}
-                                    {% if sortie.etatSortie.id == 1 or sortie.etatSortie.id == 2 or sortie.etatSortie.id == 3 %}
-                                        <a href="{{ path('app_sortie_edit', {'id': sortie.id}) }}">Modifier</a>
-                                        - <a href="{{ path('app_sortie_cancel', {'id': sortie.id}) }}">Annuler</a>
-                                    {% endif %}
-                                {% endif %}
-                            </td>
-                        </tr>
-                    {% endif %}
-                {% else %}
+            <div class="ms-5 me-5">
+                <table class="table" id="tableau_sorties">
+                    <thead>
                     <tr>
-                        <td colspan="10">Aucune sortie trouvée</td>
+                        <th>Nom de la sortie</th>
+                        <th>Date de la sortie</th>
+                        <th>Clôture</th>
+                        <th>Places</th>
+                        <th>État</th>
+                        <th>Inscrit</th>
+                        <th>Organisateur</th>
+                        <th>Actions</th>
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+
+                    {% for sortie in sorties %}
+
+                        {# UNIQUEMENT LES SORTIES NON ARCHIVEES SI PAS ADMIN #}
+                        {% if sortie.etatSortie.id != 7  %}
+                            <tr>
+                                <td>{{ sortie.nom }}</td>
+                                <td>{{ sortie.dateHeureDebut ? sortie.dateHeureDebut|date('d/m/Y à H:i') : '' }}</td>
+                                <td>{{ sortie.dateLimiteInscription ? sortie.dateLimiteInscription|date('d/m/Y') : '' }}</td>
+                                <td>{{ sortie.participants | length }} / {{ sortie.nbInscriptionsMax }}</td>
+                                <td>{{ sortie.etatSortie.libelle }}</td>
+                                <td>
+                                    {% if app.user in sortie.participants %}
+                                        <img src="{{ asset('img/coche.png') }}" width="20px" alt="yes">
+                                    {% endif %}
+                                </td>
+                                <td><a href="{{ path('app_participant_show', {'id':sortie.organisateur.id}) }}">{{ sortie.organisateur.prenom }} {{ sortie.organisateur.nom }}</a></td>
+                                <td>
+                                    {# UNIQUEMENT UTILISATEUR NON ORGANISATEUR#}
+                                    {% if app.user.id != sortie.organisateur.id %}
+                                        <a href="{{ path('app_sortie_show', {'id': sortie.id}) }}">Afficher</a>
+                                        {# UNIQUEMENT UTILISATEUR PARTICIPANT ET SORTIE OUVERTE OU CLOTUREE #}
+                                        {% if app.user in sortie.participants %}
+                                            {% if sortie.etatSortie.id == 2 or sortie.etatSortie.id == 3 %}
+                                                - <a href="{{ path('app_participant_del_sortie', {'id': sortie.id}) }}">Se désinscrire</a>
+                                            {% endif %}
+                                            {# UNIQUEMENT UTILISATEUR NON PARTICIPANT ET SORTIE OUVERTE #}
+                                        {%  else %}
+                                            {% if sortie.etatSortie.id == 2 %}
+                                                - <a href="{{ path('app_participant_add_sortie', {'id': sortie.id}) }}">S'inscrire</a>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+
+                                    {# UNIQUEMENT UTILISATEUR ORGANISATEUR#}
+                                    {% if app.user.id == sortie.organisateur.id %}
+
+                                        {# UNIQUEMENT SORTIE ETAT CREEE #}
+                                        {% if sortie.etatSortie.id == 1 %}
+                                            <a href="{{ path('app_sortie_index_pub', {'id': sortie.id}) }}">Publier</a> -
+                                        {% endif %}
+
+                                        {# UNIQUEMENT SORTIES ETATS OUVERT OU CLOTUREE #}
+                                        {% if sortie.etatSortie.id == 1 or sortie.etatSortie.id == 2 or sortie.etatSortie.id == 3 %}
+                                            <a href="{{ path('app_sortie_edit', {'id': sortie.id}) }}">Modifier</a>
+                                            - <a href="{{ path('app_sortie_cancel', {'id': sortie.id}) }}">Annuler</a>
+                                        {% endif %}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% else %}
+                        <tr>
+                            <td colspan="10">Aucune sortie trouvée</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-none d-sm-block">
+                <a href="{{ path('app_sortie_new') }}"><button class="btn-info" >Créer une nouvelle sortie</button></a>
+                <a href="{{ path('app_participant_index') }}"><button class="btn-info" >Voir les autres participants</button></a>
+            </div>
         </div>
-        <div class="d-none d-sm-block">
-            <a href="{{ path('app_sortie_new') }}"><button class="btn-info" >Créer une nouvelle sortie</button></a>
-            <a href="{{ path('app_participant_index') }}"><button class="btn-info" >Voir les autres participants</button></a>
-        </div>
-    </div>
+    </main>
+
 
 {% endblock %}

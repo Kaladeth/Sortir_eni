@@ -32,6 +32,7 @@ class SortieController extends AbstractController
         //ARCHIVAGE DES SORTIES TERMINEES DEPUIS +1 MOIS
         $etatCloture = $etatRepository->findOneBy(['id'=>3]);
         $etatEnCours = $etatRepository->findOneBy(['id'=>4]);
+//        dd($etatEnCours);
         $etatPasse = $etatRepository->findOneBy(['id'=>5]);
         $etatArchive = $etatRepository->findOneBy(['id'=>7]);
         date_default_timezone_set('Europe/Paris');
@@ -39,10 +40,9 @@ class SortieController extends AbstractController
         $sorties = $sortieRepository->findAll();
         foreach ($sorties as $sort)
         {
-
             //etat cloture
             $dateLimite = $sort->getDateLimiteInscription();
-            if ($dateLimite>$dateNow){
+            if ($dateLimite<$dateNow){
                 $sort->setEtatSortie($etatCloture);
                 $entityManager->persist($sort);
                 $entityManager->flush();
@@ -51,8 +51,12 @@ class SortieController extends AbstractController
             //etat en cours
             $dureeEnCours = $sort->getDuree();
             $sortieEnCoursDebut = clone $sort->getDateHeureDebut();
-            $sortieEnCoursFin = $sortieEnCoursDebut->modify('+'.$dureeEnCours.' minutes');
-            if ($dateNow >= $sortieEnCoursDebut && $sortieEnCoursFin>$dateNow){
+            $sortieEnCoursFin = clone $sortieEnCoursDebut;
+            $sortieEnCoursFin =  $sortieEnCoursFin->modify('+'.$dureeEnCours.' minutes');
+//            dump($sortieEnCoursFin);
+//            dump($dateNow);
+//            dd($sortieEnCoursDebut);
+            if ($sortieEnCoursDebut < $dateNow && $sortieEnCoursFin > $dateNow){
                 $sort->setEtatSortie($etatEnCours);
                 $entityManager->persist($sort);
                 $entityManager->flush();
@@ -78,7 +82,6 @@ class SortieController extends AbstractController
                 $entityManager->flush();
             }
 
-            //Si date du jour >= date fin d'inscription = état:3
         }
 
 
@@ -188,8 +191,18 @@ class SortieController extends AbstractController
     #[Route('/{id}/edit', name: 'app_sortie_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Sortie $sortie, SortieRepository $sortieRepository): Response
     {
-        $form = $this->createForm(SortieType::class, $sortie);
-        $form->handleRequest($request);
+
+        if($this->getUser() === $sortie->getOrganisateur()){
+            $form = $this->createForm(SortieType::class, $sortie);
+            $form->handleRequest($request);
+        }else {
+            $this->addFlash(
+                'notice',
+                'Vous ne pouvez pas modifier la sortie d\'un autre utilisateur !!'
+            );
+            return $this->redirectToRoute('accueil_main', [], Response::HTTP_SEE_OTHER);
+        }
+
         if ($form->isSubmitted() && $form->isValid()) {
             $sortieRepository->save($sortie, true);
 

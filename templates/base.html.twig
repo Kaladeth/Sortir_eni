@@ -8,52 +8,78 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Varela+Round&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/834037d968.js" crossorigin="anonymous"></script>
     <title>{% block title %}ENI - {% endblock %}</title>
 </head>
 <body>
-<header>
-    <div id="nav-left">
-        <a href="{{ path('accueil_main') }}" class="mx-auto"><img src="{{ asset('img/eni.png') }}" ,
-                                                                  alt="Icone ENI"></a>
-        <h3>ENI - Sorties</h3>
-    </div>
-    <div id="nav-right">
-        <ul>
-            {% if app.user %}
-                <li><h5 class="mx-3">Bonjour {{ app.user.nom }} {{ app.user.prenom }} !</h5></li>
-            {% endif %}
-            <a href="{{ path('accueil_main') }}" class="mx-3">
-                <li>Accueil</li>
-            </a>
-            {% if app.user %}
-                <a href="{{ path('app_logout') }}" class="mx-3">
-                    <li>Se déconnecter</li>
-                </a>
-                <a href="{{ path('app_participant_show', {'id':app.user.id}) }}" class="mx-3">
-                    <li>Gérer son profil</li>
-                </a>
-                <a href="{{ path('app_sortie_index') }}" class="mx-3">
-                    <li>Sorties</li>
-                </a>
-                <a href="{{ path('app_lieu_new') }}" class="mx-3">
-                    <li>Ajouter un lieu</li>
-                </a>
-                <a href="{{ path('app_ville_new') }}" class="mx-3">
-                    <li>Ajouter une ville</li>
-                </a>
-            {% else %}
-                <a href="{{ path('app_login') }}" class="mx-3">
-                    <li>Se connecter</li>
-                </a>
-            {% endif %}
+<header id="header">
 
+    <nav id="navbar">
+        <div id="nav-left">
+            <h3>ENI - Sorties</h3>
+        </div>
+        <div id="nav_center">
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('admin') }}" id="panneau_admin"><i class="fa-solid fa-screwdriver-wrench mx-2"></i>Panneau Administrateur</a>
+            {% endif %}
+        </div>
+        <div id="nav-right">
+            <ul>
+                {% if app.user %}
+                    <li><h5 class="mx-3" id="welcomer">Bonjour {{ app.user.nom }} {{ app.user.prenom }} !</h5></li>
+                {% endif %}
+                <a href="{{ path('accueil_main') }}" class="mx-3">
+                    <li  id="nav_acc">Accueil</li>
+                </a>
+                {% if app.user %}
+                    <a href="{{ path('app_logout') }}" class="mx-3">
+                        <li  id="nav_logout">Se déconnecter</li>
+                    </a>
+                    <a href="{{ path('app_participant_show', {'id':app.user.id}) }}" class="mx-3" >
+                        <li id="nav_profil">Gérer son profil</li>
+                    </a>
+                    <a href="{{ path('app_sortie_index') }}" class="mx-3">
+                        <li>Sorties</li>
+                    </a>
+                    <a href="{{ path('app_lieu_new') }}" class="mx-3">
+                        <li>Ajouter un lieu</li>
+                    </a>
+                    <a href="{{ path('app_ville_new') }}" class="mx-3">
+                        <li>Ajouter une ville</li>
+                    </a>
+                {% else %}
+                    <a href="{{ path('app_login') }}" class="mx-3" >
+                        <li id="nav_login">Se connecter</li>
+                    </a>
+                {% endif %}
 
-        </ul>
-    </div>
+            </ul>
+        </div>
+    </nav>
+
 </header>
+<script>
+    // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+    window.onscroll = function() {
+        scrollFunction()
+    };
+    document.getElementById("navbar").style.backgroundColor="transparent";
+    function scrollFunction() {
+        if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+            document.getElementById("navbar").style.opacity = "1";
+            document.getElementById("navbar").style.backgroundColor="black";
+            document.getElementById("panneau_admin").style.color="white";
+
+        } else {
+            document.getElementById("navbar").style.opacity = "1";
+            document.getElementById("navbar").style.backgroundColor="transparent";
+            document.getElementById("panneau_admin").style.color="black";
+
+
+        }
+    }
+</script>
 {% block body %}
 {% endblock %}
 <footer>
