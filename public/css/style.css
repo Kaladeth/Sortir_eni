@@ -107,7 +107,6 @@ header h5 {
     background-position: center;
     background-attachment: fixed;
     color:white;
-    height:900px;
     padding-top:70px;
 }
 
@@ -266,4 +265,11 @@ footer a:hover {
 #blackness {
     background-color: black;
     height:100vh;
+}
+
+#canvaTest {
+    border: 1px solid white;
+    width: 560px;
+    height: 360px;
+    background-color: white;
 }

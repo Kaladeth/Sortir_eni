@@ -10,8 +10,78 @@
 </head>
 <body id="blackness">
 
-
+    <div class="container d-flex justify-content-end">
+        <div class="d-flex justify-content-end">
+            <img class="d-flex justify-content-end" id="smilerImg" src="{{ asset('img/smiler.PNG') }}" alt="image smiler">
+        </div>
+    </div>
 
 
 </body>
+
+<script>
+    let x = 0;
+    let y = 0;
+
+    const body = document.getElementById('blackness');
+    const contextBody = body.getContext('2d');
+
+    body.addEventListener('mousemove', (e) => {
+        if (isDrawing) {
+            drawLine(context, x, y, e.offsetX, e.offsetY);
+            x = e.offsetX;
+            y = e.offsetY;
+        }
+    });
+
+
+
+
+    let isDrawing = false;
+    let x = 0;
+    let y = 0;
+
+    const myPics = document.getElementById('canvaTest');
+    const context = myPics.getContext('2d');
+
+    // event.offsetX, event.offsetY gives the (x,y) offset from the edge of the canvas.
+
+    // Add the event listeners for mousedown, mousemove, and mouseup
+    myPics.addEventListener('mousedown', (e) => {
+        x = e.offsetX;
+        y = e.offsetY;
+        isDrawing = true;
+    });
+
+    myPics.addEventListener('mousemove', (e) => {
+        if (isDrawing) {
+            drawLine(context, x, y, e.offsetX, e.offsetY);
+            x = e.offsetX;
+            y = e.offsetY;
+        }
+    });
+
+    window.addEventListener('mouseup', (e) => {
+        if (isDrawing) {
+            drawLine(context, x, y, e.offsetX, e.offsetY);
+            x = 0;
+            y = 0;
+            isDrawing = false;
+        }
+    });
+
+    function drawLine(context, x1, y1, x2, y2) {
+        context.beginPath();
+        context.strokeStyle = 'black';
+        context.lineWidth = 1;
+        context.moveTo(x1, y1);
+        context.lineTo(x2, y2);
+        context.stroke();
+        context.closePath();
+    }
+
+</script>
+
+
+
 </html>
