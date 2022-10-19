@@ -32,6 +32,7 @@ class SortieController extends AbstractController
         //ARCHIVAGE DES SORTIES TERMINEES DEPUIS +1 MOIS
         $etatCloture = $etatRepository->findOneBy(['id'=>3]);
         $etatEnCours = $etatRepository->findOneBy(['id'=>4]);
+//        dd($etatEnCours);
         $etatPasse = $etatRepository->findOneBy(['id'=>5]);
         $etatArchive = $etatRepository->findOneBy(['id'=>7]);
         date_default_timezone_set('Europe/Paris');
@@ -45,13 +46,16 @@ class SortieController extends AbstractController
                 $sort->setEtatSortie($etatCloture);
                 $entityManager->persist($sort);
                 $entityManager->flush();
-
             }
 
             //etat en cours
             $dureeEnCours = $sort->getDuree();
             $sortieEnCoursDebut = clone $sort->getDateHeureDebut();
-            $sortieEnCoursFin = $sortieEnCoursDebut->modify('+'.$dureeEnCours.' minutes');
+            $sortieEnCoursFin = clone $sortieEnCoursDebut;
+            $sortieEnCoursFin =  $sortieEnCoursFin->modify('+'.$dureeEnCours.' minutes');
+//            dump($sortieEnCoursFin);
+//            dump($dateNow);
+//            dd($sortieEnCoursDebut);
             if ($sortieEnCoursDebut < $dateNow && $sortieEnCoursFin > $dateNow){
                 $sort->setEtatSortie($etatEnCours);
                 $entityManager->persist($sort);
