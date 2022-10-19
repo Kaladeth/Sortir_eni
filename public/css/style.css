@@ -298,3 +298,10 @@ footer a:hover {
     background-color: black;
     height:100vh;
 }
+
+#canvaTest {
+    border: 1px solid white;
+    width: 560px;
+    height: 360px;
+    background-color: white;
+}

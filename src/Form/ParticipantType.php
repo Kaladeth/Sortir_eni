@@ -36,7 +36,9 @@ class ParticipantType extends AbstractType
             ->add('imageFile',VichImageType::class,
                 [
                     "required" => false,
-                    'attr'=>["class"=>"image_profil"]
+                    'attr'=>[
+                        "class"=>"image_profil"
+                    ]
                 ])
 
             //            ->add('administrateur')
