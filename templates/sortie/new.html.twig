@@ -3,15 +3,21 @@
 {% block title %}Création d'une sortie{% endblock %}
 
 {% block body %}
-    <div id="ajout_sortie">
-        <h1>Création d'une nouvelle sortie</h1>
+    <main id="creer_sortie_block">
+        <div class="container-fluid">
+            <div id="ajout_sortie">
+                <h1>Création d'une nouvelle sortie</h1>
 
-        {{ include('sortie/_form.html.twig') }}
+                {{ include('sortie/_form.html.twig') }}
 
 
-        <a href="{{ path('app_sortie_index') }}">back to list</a>
+                <a href="{{ path('app_sortie_index') }}">back to list</a>
 
 
-    </div>
+            </div>
+
+        </div>
+    </main>
+
 
 {% endblock %}
