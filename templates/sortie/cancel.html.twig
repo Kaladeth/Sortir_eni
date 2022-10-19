@@ -1,21 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Annuler une sortie</h1>
-    <ul>
-        <li>Nom de la sortie : {{ sortie.nom }}</li>
-        <li>Date de la sortie : {{ sortie.dateHeureDebut | date('d-m-Y') }}</li>
-        <li>{{ sortie.site.nom }}</li>
-        <li>{{ sortie.lieu.nom }}</li>
-    </ul>
-{#    <form action="" method="post">#}
-{#        <input type="text" name="id" hidden value="{{ sortie.id }}">#}
-{#        <label for="motif">Motif d'annulation</label>#}
-{#        <textarea name="motif" id="motif" placeholder="Motif d'annulation" cols="20" rows="2"></textarea>#}
-{#        <input type="button" value="enregistrer">#}
-    {{ form_start(form) }}
-        <button class="btn">{{ button_label | default('Enregistrer') }}</button>
-{#        {{ form_row(form.infosSortie) }}#}
-    {{ form_end(form) }}
-{#    </form>#}
+    <main id="annuler_sortie">
+        <div class="container-fluid">
+            <h1>Annuler une sortie</h1>
+            <ul>
+                <li>Nom de la sortie : {{ sortie.nom }}</li>
+                <li>Date de la sortie : {{ sortie.dateHeureDebut | date('d-m-Y') }}</li>
+                <li>{{ sortie.site.nom }}</li>
+                <li>{{ sortie.lieu.nom }}</li>
+            </ul>
+            {#    <form action="" method="post">#}
+            {#        <input type="text" name="id" hidden value="{{ sortie.id }}">#}
+            {#        <label for="motif">Motif d'annulation</label>#}
+            {#        <textarea name="motif" id="motif" placeholder="Motif d'annulation" cols="20" rows="2"></textarea>#}
+            {#        <input type="button" value="enregistrer">#}
+            {{ form_start(form) }}
+            <button class="btn" id="btn_annuler">{{ button_label | default('Annuler') }}</button>
+            {#        {{ form_row(form.infosSortie) }}#}
+            {{ form_end(form) }}
+            {#    </form>#}
+        </div>
+    </main>
+
 {% endblock %}

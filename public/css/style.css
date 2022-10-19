@@ -1,54 +1,125 @@
+html {
+     /* height of sticky header */
+}
 body {
-    font-family:'Roboto', sans-serif;
+    font-family: 'Varela Round', sans-serif;
+
+}
+main {
+    padding-bottom: 20px;
+
+}
+#btn_del {
+    color:white;
+    background-color: grey;
+    transition: all 0.5s;
+}
+#btn_del:hover {
+    color:black;
+    background-color: white;
+    transition: all 0.5s;
+}
+#btn_modouaj {
+    color:white;
+    background-color: grey;
+    transition: all 0.5s;
+}
+#btn_modouaj:hover {
+    color:black;
+    background-color: white;
+    transition: all 0.5s;
+}
+#btn_annuler {
+    color:white;
+    background-color: grey;
+    transition: all 0.5s;
+}
+#btn_annuler:hover {
+    color:black;
+    background-color: white;
+    transition: all 0.5s;
 }
 /* HEADER */
-header {
+
+nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    border:1px grey solid;
     padding-left:0;
-    background: linear-gradient(rgba(0,30,120,0.4), rgba(110,110,110,0.4));
+    min-height: 3.5rem;
+    background-color: #fff;
+    position:fixed;
+    width:100%;
+    overflow:hidden;
+    z-index:2;
+    padding-top:10px;
+    height:70px;
+    transition: background-color 0.3s ease-in-out;
 }
 header h5 {
-    color:green;
     font-style: italic;
+    color:rgba(255, 255, 255, 0.5);
+    transition: color 0.3s ease-in-out;
+    font-weight: bold;
 }
 #nav-left {
     display:flex;
     align-items: center;
     justify-content: center;
+    padding-left:4em;
+    color:rgba(255, 255, 255, 0.5);
+    transition: color 0.3s ease-in-out;
 }
-#nav-left h3 {
-    position:relative;
-    right:90px;
-}
+
 #nav-left a img {
     width:40%;
 }
 #nav-right ul {
     display: flex;
     list-style-type: none;
+    margin-bottom:0;
 }
 #nav-right ul a {
     text-decoration: none;
-    font-weight: bold;
-    color:black;
+    color:rgba(255, 255, 255, 0.5);
 }
 #nav-right ul a:hover {
     color:blue;
 }
 
+#nav_center {
+    margin-bottom:10px ;
+}
+#nav_center a {
+    text-decoration: none;
+    color:black;
+    transition: color 0.3s ease-in-out;
+}
+#nav_center a:hover {
+    color:blue;
+}
+
 /* ACCUEIL */
 #accueil {
-    background:linear-gradient(rgba(0,140, 130, 0.4), rgba(40,110, 190, 0.4)), url("../img/train.jpg");
+    background:url("../img/monts.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     color:white;
-    text-shadow: #0f172a 2px 2px;
     height:900px;
+    padding-top:70px;
+}
+
+#titre_accueil{
+     background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase !important;
+    font-family: 'Varela Round', sans-serif;
+    letter-spacing: 5px;
+    font-weight: bolder;
+    font-size:5em;
 }
 
 /* Formulaires */
@@ -59,7 +130,15 @@ header h5 {
 
 /* AFFICHAGE DE LA LISTE DES SORTIES */
 #liste_sorties {
-    background:linear-gradient(rgba(0,140, 130, 0.4), rgba(40,110, 190, 0.4)) ;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
+    padding-top:70px;
+    color:rgba(255, 255, 255, 0.5);
+}
+#tableau_sorties {
+    color:rgba(255, 255, 255, 0.5);
+}
+#tableau_sorties a {
+    color:rgba(255, 255, 255, 0.5);
 }
 #filter {
     margin-top:13vh;
@@ -83,9 +162,12 @@ header h5 {
 }
 
 /* CREER SORTIE */
-#ajout_sortie button {
-    background-color: red;
+#creer_sortie_block {
+    padding-top:70px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
+    color:rgba(255, 255, 255, 0.8);
 }
+
 #ajout_sortie input {
     border:1px solid black;
 }
@@ -102,8 +184,11 @@ header h5 {
     border:1px black solid;
 }
 .plus_sign {
-    color:black;
+    color:white;
     font-size: 2em;
+}
+.plus_sign:hover {
+    color:grey;
 }
 #sortie_lieu {
     margin-left:9px;
@@ -118,6 +203,42 @@ header h5 {
     height:65vh;
 }
 
+/* GERER PROFIL */
+#gerer_profil {
+    padding-top:70px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
+    color:rgba(255, 255, 255, 0.8);
+}
+#link_modifier_profil {
+    color:rgba(255, 255, 255, 0.8);
+}
+/* MODIFIER PROFIL */
+#modifier_profil {
+    padding-top:70px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
+    color:rgba(255, 255, 255, 0.8);
+}
+/* SE CONNECTER */
+#login {
+    padding-top:70px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
+    color:rgba(255, 255, 255, 0.8);
+}
+
+/* MODIFIER SORTIE */
+
+#modifier_sortie_block {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
+    color:rgba(255, 255, 255, 0.8);
+    padding-top:70px;
+}
+
+/* ANNULER SORTIE */
+#annuler_sortie {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
+    color:rgba(255, 255, 255, 0.8);
+    padding-top:70px;
+}
 /* FOOTER */
 footer {
     display: flex;
@@ -125,14 +246,17 @@ footer {
     align-items: center;
     border:1px grey solid;
     padding-left:0;
-    background: linear-gradient(rgba(0,30,120,0.4), rgba(110,110,110,0.4));
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
+    color:white;
+
+
 }
 
 footer p {
     margin-bottom: 0;
 }
 footer a {
-    color:rgba(0,30,120,0.4);
+    color:transparent;
 }
 footer a:hover {
     color:black
