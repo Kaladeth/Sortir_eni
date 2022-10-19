@@ -16,13 +16,8 @@
         <img src="{{ asset('/img/uploads/' ~ participant.getImageName()) }}" alt="img_profil">
 
 
-
         {% if app.user.id == participant.id %}
-            <a class="btn btn-primary" href="{{ path("app_forgot_password_request") }}">Récupérer mon mot de passe</a>
             <a class="btn btn-primary" href="{{ path('app_participant_edit', {'id': participant.id}) }}">Modifier mon profil</a>
         {% endif %}
-        <a href="{{ path('app_participant_edit', {'id': participant.id}) }}">Editer</a>
-
-        {{ include('participant/_delete_form.html.twig') }}
     </div>
 {% endblock %}

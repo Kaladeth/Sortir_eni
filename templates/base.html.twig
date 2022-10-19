@@ -35,17 +35,21 @@
                 <a href="{{ path('app_participant_show', {'id':app.user.id}) }}" class="mx-3">
                     <li>Gérer son profil</li>
                 </a>
+                <a href="{{ path('app_sortie_index') }}" class="mx-3">
+                    <li>Sorties</li>
+                </a>
+                <a href="{{ path('app_lieu_new') }}" class="mx-3">
+                    <li>Ajouter un lieu</li>
+                </a>
+                <a href="{{ path('app_ville_new') }}" class="mx-3">
+                    <li>Ajouter une ville</li>
+                </a>
             {% else %}
                 <a href="{{ path('app_login') }}" class="mx-3">
                     <li>Se connecter</li>
                 </a>
             {% endif %}
 
-            {% if app.user %}
-                <a href="{{ path('app_sortie_index') }}" class="mx-3">
-                    <li>Sorties</li>
-                </a>
-            {% endif %}
 
         </ul>
     </div>

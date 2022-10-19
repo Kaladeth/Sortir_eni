@@ -54,6 +54,7 @@ class SortieRepository extends ServiceEntityRepository
         $query = $this
             ->createQueryBuilder('so')
             ->select('so');
+
         if (!empty($nomSite)){
             $query = $query
                 ->join('so.site', 'si')

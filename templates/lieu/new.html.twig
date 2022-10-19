@@ -3,9 +3,73 @@
 {% block title %}New Lieu{% endblock %}
 
 {% block body %}
+
+    <link rel="stylesheet" href="{{ asset('css/map.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+          integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+            integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+            crossorigin=""></script>
+
     <h1>Create new Lieu</h1>
 
-    {{ include('lieu/_form.html.twig') }}
+    <div class="container">
 
-    <a href="{{ path('app_lieu_index') }}">back to list</a>
+        {{ form_start(form) }}
+            {{ form_row(form.nom) }}
+            {{ form_row(form.rue) }}
+            {{ form_row(form.latitude) }}
+            {{ form_row(form.longitude) }}
+            {{ form_row(form.ville) }}
+            <div class="d-flex justify-content-center mb-3">
+                <input class="btn btn-info" type="submit" value="Ajouter le lieu">
+            </div>
+        {{ form_end(form) }}
+
+    </div>
+
+    <div class="container">
+        <div onload="init()" id="map">Ici la map</div>
+    </div>
+
+    <script>
+
+        var map = L.map('map').setView([48.8588897,  -1.552162], 13);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+            var greenIcon = L.icon({
+                iconUrl: '{{ asset('img/leaf-green.png') }}',
+                shadowUrl: '{{ asset('img/leaf-shadow.png') }}',
+                iconSize:     [38, 95], // size of the icon
+                shadowSize:   [50, 64], // size of the shadow
+                iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                shadowAnchor: [4, 62],  // the same for the shadow
+                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            });
+            // L.marker([0, 0], {icon: greenIcon}).addTo(map);
+            var popup = L.popup();
+            let coords;
+            function onMapClick(e) {
+                popup
+                    .setLatLng(e.latlng)
+                    .setContent("Coords GPS " + e.latlng.toString())
+                    .openOn(map);
+                // /\[.+?\]/g
+                // /(?<=\[).+?(?=\])/g
+                var regExpLat = /(?<=\().+?(?=,)/g;
+                var latitude = regExpLat.exec(e.latlng);
+                var regExpLong = /(?<=,).+?(?=\))/g;
+                var longitude = regExpLong.exec(e.latlng);
+                document.getElementById("lieu_latitude").value = latitude;
+                document.getElementById("lieu_longitude").value = longitude;
+            }
+
+            map.on('click', onMapClick);
+
+    </script>
+
+
 {% endblock %}

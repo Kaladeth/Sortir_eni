@@ -172,9 +172,11 @@ class SortieController extends AbstractController
     #[Route('/details/{id}', name: 'app_sortie_show', methods: ['GET'])]
     public function show(Sortie $sortie): Response
     {
+        if ($sortie->getEtatSortie()->getId() === 7) {
+            return $this->redirectToRoute('accueil_main');
+        }
 
         $participant = $sortie->getParticipants();
-
         return $this->render('sortie/show.html.twig', [
             'sortie' => $sortie,
             'participant'=>$participant
