@@ -59,11 +59,11 @@
             <table class="table table-striped">
 
                 {% for part in participant %}
-                    <tr>
-                        <td><a href="{{ path('app_participant_show', {'id': part.id}) }}">{{ part.nom }}</a></td>
-                        <td><a href="{{ path('app_participant_show', {'id': part.id}) }}">{{ part.prenom }}</a></td>
-                    </tr>
-
+{#                    <tr>#}
+{#                        <td><a href="{{ path('app_participant_show', {'id': part.id}) }}">{{ part.nom }}</a></td>#}
+{#                        <td><a href="{{ path('app_participant_show', {'id': part.id}) }}">{{ part.prenom }}</a></td>#}
+{#                    </tr>#}
+                    <p><a href="{{ path('app_participant_show', {'id': part.id}) }}">{{ part.nom }} {{ part.prenom }}</a></p>
                 {% endfor %}
             </table>
 

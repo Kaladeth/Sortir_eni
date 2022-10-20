@@ -282,6 +282,14 @@ header h5 {
     height: 100vh;
 }
 
+#titre-participants {
+    font-size:3em;
+    font-weight: bold;
+    background: linear-gradient(rgba(35, 35, 35, 0.9), rgba(35, 35, 35, 0.6));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 #participants table{
     color:rgba(255, 255, 255, 0.8);
 }
@@ -313,7 +321,6 @@ header h5 {
     margin-top:30px;
     width:60%;
     height:60%;
-    margin-top:30px;
 }
 
 
@@ -337,7 +344,6 @@ header h5 {
     padding-top:70px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
-    height: 98vh;
 }
 
 .card-img-participant{
@@ -357,7 +363,6 @@ header h5 {
     padding-top:70px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
-    height:100vh;
 
 
 }

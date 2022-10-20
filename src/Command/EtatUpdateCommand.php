@@ -45,57 +45,57 @@ class EtatUpdateCommand extends Command
             'Execution de la commande'
         ]);
 
-
-        //ARCHIVAGE DES SORTIES TERMINEES DEPUIS +1 MOIS
-        $etatCloture = $this->etatRepository->findOneBy(['id'=>3]);
-        $etatEnCours = $this->etatRepository->findOneBy(['id'=>4]);
-        $etatPasse = $this->etatRepository->findOneBy(['id'=>5]);
-        $etatArchive = $this->etatRepository->findOneBy(['id'=>7]);
-        date_default_timezone_set('Europe/Paris');
-        $dateNow = new \DateTime("now");
-        $sorties = $this->sortieRepository->findAll();
-        foreach ($sorties as $sort)
-        {
-            //etat cloture
-            $dateLimite = $sort->getDateLimiteInscription();
-            if ($dateLimite<$dateNow){
-                $sort->setEtatSortie($etatCloture);
-                $this->entityManagerInterface->persist($sort);
-                $this->entityManagerInterface->flush();
-            }
-
-            //etat en cours
-            $dureeEnCours = $sort->getDuree();
-            $sortieEnCoursDebut = clone $sort->getDateHeureDebut();
-            $sortieEnCoursFin = clone $sortieEnCoursDebut;
-            $sortieEnCoursFin =  $sortieEnCoursFin->modify('+'.$dureeEnCours.' minutes');
-            if ($sortieEnCoursDebut < $dateNow && $sortieEnCoursFin > $dateNow){
-                $sort->setEtatSortie($etatEnCours);
-                $this->entityManagerInterface->persist($sort);
-                $this->entityManagerInterface->flush();
-            }
-
-            //etat passé
-            $duree = $sort->getDuree();
-            $sortiePassee = clone $sort->getDateHeureDebut();
-            $sortiePassee->modify('+'. $duree . ' minutes' );
-            if ($sortiePassee<$dateNow){
-                $sort->setEtatSortie($etatPasse);
-                $this->entityManagerInterface->persist($sort);
-                $this->entityManagerInterface->flush();
-            }
-
-            //etat archive
-            $finDeSortie = clone $sort->getDateHeureDebut();
-            $finDeSortie->add(new \DateInterval('PT745H'));
-            $finDeSortie->add(new \DateInterval('PT'.$sort->getDuree().'M'));
-            if ($finDeSortie<$dateNow){
-                $sort->setEtatSortie($etatArchive);
-                $this->entityManagerInterface->persist($sort);
-                $this->entityManagerInterface->flush();
-            }
-
-        }
+//
+//        //ARCHIVAGE DES SORTIES TERMINEES DEPUIS +1 MOIS
+//        $etatCloture = $this->etatRepository->findOneBy(['id'=>3]);
+//        $etatEnCours = $this->etatRepository->findOneBy(['id'=>4]);
+//        $etatPasse = $this->etatRepository->findOneBy(['id'=>5]);
+//        $etatArchive = $this->etatRepository->findOneBy(['id'=>7]);
+//        date_default_timezone_set('Europe/Paris');
+//        $dateNow = new \DateTime("now");
+//        $sorties = $this->sortieRepository->findAll();
+//        foreach ($sorties as $sort)
+//        {
+//            //etat cloture
+//            $dateLimite = $sort->getDateLimiteInscription();
+//            if ($dateLimite<$dateNow){
+//                $sort->setEtatSortie($etatCloture);
+//                $this->entityManagerInterface->persist($sort);
+//                $this->entityManagerInterface->flush();
+//            }
+//
+//            //etat en cours
+//            $dureeEnCours = $sort->getDuree();
+//            $sortieEnCoursDebut = clone $sort->getDateHeureDebut();
+//            $sortieEnCoursFin = clone $sortieEnCoursDebut;
+//            $sortieEnCoursFin =  $sortieEnCoursFin->modify('+'.$dureeEnCours.' minutes');
+//            if ($sortieEnCoursDebut < $dateNow && $sortieEnCoursFin > $dateNow){
+//                $sort->setEtatSortie($etatEnCours);
+//                $this->entityManagerInterface->persist($sort);
+//                $this->entityManagerInterface->flush();
+//            }
+//
+//            //etat passé
+//            $duree = $sort->getDuree();
+//            $sortiePassee = clone $sort->getDateHeureDebut();
+//            $sortiePassee->modify('+'. $duree . ' minutes' );
+//            if ($sortiePassee<$dateNow){
+//                $sort->setEtatSortie($etatPasse);
+//                $this->entityManagerInterface->persist($sort);
+//                $this->entityManagerInterface->flush();
+//            }
+//
+//            //etat archive
+//            $finDeSortie = clone $sort->getDateHeureDebut();
+//            $finDeSortie->add(new \DateInterval('PT745H'));
+//            $finDeSortie->add(new \DateInterval('PT'.$sort->getDuree().'M'));
+//            if ($finDeSortie<$dateNow){
+//                $sort->setEtatSortie($etatArchive);
+//                $this->entityManagerInterface->persist($sort);
+//                $this->entityManagerInterface->flush();
+//            }
+//
+//        }
 
         return Command::SUCCESS;
     }
