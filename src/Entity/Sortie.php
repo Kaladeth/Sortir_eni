@@ -25,7 +25,6 @@ class Sortie
     private ?string $nom = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Assert\GreaterThan('today UTC', message: 'Merci de renseigner une date et une heure à venir')]
     /**
      * @Assert\Type("\DateTimeInterface")
      */
@@ -36,7 +35,6 @@ class Sortie
     private ?int $duree = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Assert\GreaterThan('today UTC', message: 'Merci de renseigner une date et une heure à venir')]
     /**
      * @Assert\Type("\DateTimeInterface")
      */

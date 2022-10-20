@@ -59,18 +59,14 @@
             <div class="forms row my-5 text-center">
                 <h2>Participants</h2>
             </div>
-            <table class="table table-striped">
+            <div class="d-flex justify-content-centers" >
+                <div class="mx-auto">
+                    {% for part in participant %}
+                        - <p><a href="{{ path('app_participant_show', {'id': part.id}) }}">{{ part.nom }} {{ part.prenom }}</a></p>
+                    {% endfor %}
+                </div>
+            </div>
 
-                {% for part in participant %}
-                    <p><a href="{{ path('app_participant_show', {'id': part.id}) }}">{{ part.nom }} {{ part.prenom }}</a></p>
-                {% endfor %}
-            </table>
-
-
-            <a href="{{ path('app_sortie_index') }}">back to list</a><br>
-            <a href="{{ path('app_sortie_edit', {'id': sortie.id}) }}">edit</a>
-
-            {{ include('sortie/_delete_form.html.twig') }}
         </div>
     </main>
 
