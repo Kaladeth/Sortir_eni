@@ -3,25 +3,36 @@
 {% block title %}Participant{% endblock %}
 
 {% block body %}
+
     <main id="gerer_profil">
-        <div class="container">
+        <div class="container mt-4">
             <h1 class="d-flex justify-content-center">Participant</h1>
-            <div class="row justify-content-center mx-lg-5 card_profil">
-                <div class="col-10">
-                    <div class="card " id="carte_part" style="width: 100%;">
-                        <img src="{{ asset('/img/uploads/' ~ participant.getImageName()) }}" class="card-img-top mx-auto" alt="img_profil">
-                        <div class="card-body">
-                            <p>{{ participant.nom }}</p>
-                            <p>{{ participant.prenom }}</p>
-                            <p>{{ participant.email }}</p>
-                            <p>{{ participant.telephone }}</p>
-                        </div>
+
+            <div class="row d-flex justify-content-center">
+                <div class="card" id="carte_part">
+                    <img src="{{ asset('/img/uploads/' ~ participant.getImageName()) }}"
+                         class="card-img-participant mx-auto mt-5" alt="img_profil">
+                    <div class="card-body align-self-center mt-1">
+                        <hr>
+                        <p><b>{{ participant.nom }} {{ participant.prenom }}</b></p>
+                        <p>{{ participant.email }}</p>
+                        <p>{{ participant.telephone }}</p>
                     </div>
                 </div>
+
+
             </div>
+
+
+
+
+
+
+
+
             {#                <img src="{{ asset('/img/uploads/' ~ participant.getImageName()) }}" alt="img_profil">#}
             {% if app.user.id == participant.id %}
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center mt-4">
                     <a class="btn btn-primary"  href="{{ path('app_participant_edit', {'id': participant.id}) }}">Modifier mon profil</a>
                 </div>
             {% endif %}
