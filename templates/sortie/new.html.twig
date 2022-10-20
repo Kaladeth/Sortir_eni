@@ -27,8 +27,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6" >
-                                    {{ form_row(form.dateHeureDebut) }}
+                            <div class="col-6">
+                                {{ form_row(form.dateHeureDebut) }}
                             </div>
                             <div class="col-6">
                                 {{ form_row(form.dateLimiteInscription) }}
@@ -57,9 +57,12 @@
 
                     <div class="d-flex justify-content-center gap-4">
                         <button class="btn" id="btn_modouaj">{{ button_label|default('Ajouter') }}</button>
-                        <a href="{{ path('app_sortie_index') }}"><button id="btn_btl">Retour à la liste</button></a>
+                        <a href="{{ path('app_sortie_index') }}">
+                            <button id="btn_btl">Retour à la liste</button>
+                        </a>
                     </div>
-
+                    {{ form_rest(form) }}
+                    {{ form_end(form) }}
                 </div>
 
 
