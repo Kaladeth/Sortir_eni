@@ -32,6 +32,7 @@ class Sortie
     private ?\DateTimeInterface $dateHeureDebut = null;
 
     #[ORM\Column]
+    #[Assert\GreaterThan(0)]
     private ?int $duree = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -42,6 +43,7 @@ class Sortie
     private ?\DateTimeInterface $dateLimiteInscription = null;
 
     #[ORM\Column]
+    #[Assert\GreaterThan(0, message: 'Merci de mettre un participant minimum')]
     private ?int $nbInscriptionsMax = null;
 
     #[ORM\Column(length: 255)]

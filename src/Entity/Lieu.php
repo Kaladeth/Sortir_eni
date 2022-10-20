@@ -14,6 +14,7 @@ class Lieu
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Assert\Type(type: 'integer', message: 'Id non valide')]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
