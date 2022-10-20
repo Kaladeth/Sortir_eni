@@ -22,12 +22,14 @@ class ParticipantType extends AbstractType
             ->add('telephone')
             ->add('site', EntityType::class,
                 [
+                    "label" => false,
                     "class"=>Site::class,
                     "choice_label"=>"nom"
                 ])
 
             ->add('sorties', EntityType::class,
                 [
+                    "label" => false,
                     "class"=>Sortie::class,
                     "choice_label"=>"nom",
                     "multiple"=>true,
@@ -39,6 +41,7 @@ class ParticipantType extends AbstractType
                     "required" => false,
                     "allow_delete" => false,
                     "image_uri" => false,
+                    "download_label" => false,
                     'attr'=>[
                         "class"=>"image_profil"
                     ]
