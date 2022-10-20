@@ -249,16 +249,8 @@ header h5 {
     margin-top:30px;
 }
 
-.card-img-participant{
-    border: black solid 3px;
-    border-radius: 50%;
-    width: 55%;
-    height: 40%;
 
-}
-.card-img-participant:hover{
-    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.09);
-}
+
 
 #carte_part{
     border: black solid 1px;
@@ -274,11 +266,22 @@ header h5 {
 
 
 /* GERER PROFIL */
-#gerer_profil {
+#show-participant {
     padding-top:70px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
+    height: 98vh;
 }
+
+.card-img-participant{
+    border: black solid 3px;
+    border-radius: 50%;
+    width: 50%;
+    height: 40%;
+
+}
+
+
 #link_modifier_profil {
     color:rgba(255, 255, 255, 0.8);
 }
@@ -287,6 +290,9 @@ header h5 {
     padding-top:70px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
+    height:100vh;
+
+
 }
 
 /* RESET PASSWORD */

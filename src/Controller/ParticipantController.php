@@ -58,7 +58,6 @@ class ParticipantController extends AbstractController
     #[Route('/{id}/edit', name: 'app_participant_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Participant $participant, ParticipantRepository $participantRepository): Response
     {
-
         if($this->getUser() === $participant) {
             $form = $this->createForm(ParticipantType::class, $participant);
             $form->handleRequest($request);
@@ -74,13 +73,11 @@ class ParticipantController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $participantRepository->save($participant, true);
             $participant->setImageFile(null);
-
-            return $this->redirectToRoute('app_participant_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_participant_edit',['id' => $participant->getId()], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('participant/edit.html.twig', [
-            'participant' => $participant,
             'form' => $form,
+            'participant' => $participant
         ]);
     }
 

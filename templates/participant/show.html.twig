@@ -4,9 +4,10 @@
 
 {% block body %}
 
-    <main id="gerer_profil">
-        <div class="container mt-4">
-            <h1 class="d-flex justify-content-center">Participant</h1>
+    <main id="show-participant">
+        <div class="container mt-5">
+
+            <h1 class="d-flex justify-content-center my-3" id="h1_participant">Votre profil</h1>
 
             <div class="row d-flex justify-content-center">
                 <div class="card" id="carte_part">
@@ -19,16 +20,7 @@
                         <p>{{ participant.telephone }}</p>
                     </div>
                 </div>
-
-
             </div>
-
-
-
-
-
-
-
 
             {#                <img src="{{ asset('/img/uploads/' ~ participant.getImageName()) }}" alt="img_profil">#}
             {% if app.user.id == participant.id %}
