@@ -5,6 +5,7 @@ body {
     font-family: 'Varela Round', sans-serif;
 
 }
+
 main {
     padding-bottom: 20px;
 
@@ -39,7 +40,26 @@ main {
     background-color: white;
     transition: all 0.5s;
 }
-/* HEADER */
+
+/* = = = = = = = = = = = = = = = = = = = = RESPONSIVE NAVBAR = = = = = = = = = = = = = = = = = = = = */
+@media screen and (max-width:1200px) {
+    header h5 {
+        font-size:80%;
+    }
+    #nav-left h3 {
+        font-size:80%;
+    }
+    #nav_center {
+        display:none;
+    }
+    #nav-right a {
+        font-size:0.8em;
+    }
+}
+
+
+
+/* = = = = = = = = = = = = = = = = = = = = HEADER = = = = = = = = = = = = = = = = = = = = */
 
 nav {
     display: flex;
@@ -99,7 +119,7 @@ header h5 {
     color:blue;
 }
 
-/* ACCUEIL */
+/* = = = = = = = = = = = = = = = = = = = = ACCUEIL = = = = = = = = = = = = = = = = = = = = */
 #accueil {
     background:url("../img/monts.jpg");
     background-repeat: no-repeat;
@@ -133,7 +153,7 @@ header h5 {
 }
 
 #titre_accueil{
-     background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5));
+     background: linear-gradient(rgba(25, 25, 25, 0.9), rgba(25, 25, 25, 0.7));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-transform: uppercase !important;
@@ -149,26 +169,44 @@ header h5 {
     font-size:1.2em;
 }
 
-/* Formulaires */
+/* = = = = = = = = = = = = = = = = = = = = Formulaires = = = = = = = = = = = = = = = = = = = = */
 .forms{
     margin: .3em;
     padding: .3em;
 }
 
-/* AFFICHAGE DE LA LISTE DES SORTIES */
+/* = = = = = = = = = = = = = = = = = = = = AFFICHAGE DE LA LISTE DES SORTIES = = = = = = = = = = = = = = = = = = = = */
 #liste_sorties {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     padding-top:70px;
     color:rgba(255, 255, 255, 0.5);
 }
+#liste_sorties hr {
+    width:90%;
+    align-content: center;
+    color: whitesmoke;
+}
+#liste_sorties h1 {
+    font-size:3em;
+    text-transform: uppercase;
+    font-weight: bolder;
+    background: linear-gradient(rgba(35, 35, 35, 0.9), rgba(35, 35, 35, 0.6));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 #tableau_sorties {
     color:rgba(255, 255, 255, 0.5);
 }
 #tableau_sorties a {
     color:rgba(255, 255, 255, 0.5);
 }
+#tableau_sorties tr {
+    border-color: rgba(38, 102, 185, 0.5);
+}
 #filter {
-    margin-top:13vh;
+    margin-top:2vh;
+    margin-bottom:8vh;
 }
 #valider_filter {
     width:12em;
@@ -187,8 +225,21 @@ header h5 {
 #creer_sortie:hover {
     background-color:white;
 }
+.btn_index_sortie {
+    height:2.4em;
+    border-radius: 7%;
+    color:white;
+    background-color: grey;
+    transition: all 0.5s;
+}
 
-/* CREER SORTIE */
+.btn_index_sortie:hover {
+    color:black;
+    background-color: white;
+    transition: all 0.5s;
+}
+
+/* = = = = = = = = = = = = = = = = = = = = CREER SORTIE = = = = = = = = = = = = = = = = = = = = */
 #creer_sortie_block {
     padding-top:70px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
@@ -223,19 +274,19 @@ header h5 {
 #lieu_bloc i {
     margin-top:3px;
 }
-/* LISTE PARTICIPANTS */
+/* = = = = = = = = = = = = = = = = = = = = LISTE PARTICIPANTS = = = = = = = = = = = = = = = = = = = = */
 #participants {
     padding-top:70px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
 }
-/* DETAILS SORTIE */
+/* = = = = = = = = = = = = = = = = = = = = DETAILS SORTIE = = = = = = = = = = = = = = = = = = = = */
 #details_sortie {
     padding-top:70px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
 }
-/* CARTES ACCUEIL */
+/* = = = = = = = = = = = = = = = = = = = = CARTES ACCUEIL = = = = = = = = = = = = = = = = = = = = */
 
 
 .card {
@@ -273,7 +324,7 @@ header h5 {
 }
 
 
-/* GERER PROFIL */
+/* = = = = = = = = = = = = = = = = = = = = GERER PROFIL = = = = = = = = = = = = = = = = = = = = */
 #gerer_profil {
     padding-top:70px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
@@ -282,14 +333,14 @@ header h5 {
 #link_modifier_profil {
     color:rgba(255, 255, 255, 0.8);
 }
-/* MODIFIER PROFIL */
+/* = = = = = = = = = = = = = = = = = = = = MODIFIER PROFIL = = = = = = = = = = = = = = = = = = = = */
 #modifier_profil {
     padding-top:70px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
 }
 
-/* RESET PASSWORD */
+/* = = = = = = = = = = = = = = = = = = = = RESET PASSWORD = = = = = = = = = = = = = = = = = = = = */
 #reset_pw {
     padding-top:70px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
@@ -301,14 +352,28 @@ header h5 {
     color:rgba(255, 255, 255, 0.8);
 }
 
-/* SE CONNECTER */
+/* = = = = = = = = = = = = = = = = = = = = SE CONNECTER = = = = = = = = = = = = = = = = = = = = */
 #login {
     padding-top:70px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
+    height:100vh;
 }
 
-/* MODIFIER SORTIE */
+#titre_connexion {
+    font-size:3em;
+    font-weight: bold;
+    background: linear-gradient(rgba(35, 35, 35, 0.9), rgba(35, 35, 35, 0.6));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#login hr {
+    width: 90%;
+    align-content: center;
+    color: whitesmoke;
+}
+/* = = = = = = = = = = = = = = = = = = = = MODIFIER SORTIE = = = = = = = = = = = = = = = = = = = = */
 
 #modifier_sortie_block {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
@@ -316,26 +381,27 @@ header h5 {
     padding-top:70px;
 }
 
-/* ANNULER SORTIE */
+/* = = = = = = = = = = = = = = = = = = = = ANNULER SORTIE = = = = = = = = = = = = = = = = = = = = */
 #annuler_sortie {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
     padding-top:70px;
 }
-/* AJOUTER LIEU */
+/* = = = = = = = = = = = = = = = = = = = = AJOUTER LIEU = = = = = = = = = = = = = = = = = = = = */
 #ajouter_lieu {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
     padding-top:70px;
 }
 
-/* AJOUTER VILLE */
+/* = = = = = = = = = = = = = = = = = = = = AJOUTER VILLE = = = = = = = = = = = = = = = = = = = = */
 #ajouter_ville {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
     padding-top:70px;
+    height:100vh;
 }
-/* FOOTER */
+/* = = = = = = = = = = = = = = = = = = = = FOOTER  = = = = = = = = = = = = = = = = = = = =*/
 footer {
     display: flex;
     justify-content: space-evenly;
@@ -344,6 +410,7 @@ footer {
     padding-left:0;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:white;
+    height:50px;
 
 
 }
@@ -358,7 +425,7 @@ footer a:hover {
     color:black
 }
 
-/* BLACKNESS */
+/*  = = = = = = = = = = = = = = = = = = = = BLACKNESS  = = = = = = = = = = = = = = = = = = = = */
 #blackness {
     background-color: black;
     height:100vh;
