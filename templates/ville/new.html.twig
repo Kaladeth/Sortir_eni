@@ -4,14 +4,13 @@
 {% block body %}
     <main id="ajouter_ville">
         <div class="container-fluid">
-            <h1>Ajouter une ville</h1>
+            <h1 class="text-center my-5">Ajouter une ville</h1>
             {{ form_start(form) }}
             {{ form_widget(form) }}
 
-            <button class="btn" id="btn_modouaj">{{ button_label|default('Save') }}</button>
+            <button class="btn" id="btn_modouaj">{{ button_label|default('Enregistrer') }}</button>
 
             {{ form_end(form) }}
-            <a href="{{ path('app_ville_index') }}">Villes</a>
         </div>
     </main>
 

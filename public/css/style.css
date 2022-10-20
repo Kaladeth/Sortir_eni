@@ -244,6 +244,45 @@ header h5 {
     padding-top:70px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
+    height:100vh;
+}
+
+#creer_sortie_block h1 {
+    font-size:3em;
+    text-transform: uppercase;
+    font-weight: bolder;
+    background: linear-gradient(rgba(35, 35, 35, 0.9), rgba(35, 35, 35, 0.6));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+#creer_sortie_block hr {
+    width:90%;
+    align-content: center;
+    color: whitesmoke;
+}
+#creer_sortie_block #btn_modouaj {
+    color:white;
+    background-color: grey;
+    transition: all 0.5s;
+    border-radius: 7px;
+    height:3em;
+    width:9em;
+
+}
+#btn_btl {
+    color:white;
+    background-color: grey;
+    transition: all 0.5s;
+    border-radius: 7px;
+    height:3em;
+    width:10em;
+    border:none;
+
+}
+#btn_btl:hover {
+    color:black;
+    background-color: white;
+    transition: all 0.5s;
 }
 
 #ajout_sortie input {
@@ -255,8 +294,19 @@ header h5 {
 .dli_ajout {
     border:1px black solid;
 }
+#sortie_dateHeureDebut {
+    width:52%;
+    margin-left:120px;
+}
+#sortie_dateLimiteInscription {
+    width:52%;
+    margin-left:120px;
+}
 .lieu_ajout {
     border:1px black solid;
+}
+.nbInscr_ajout {
+    margin-top:10px;
 }
 .motifAnnulation {
     border:1px black solid;
@@ -280,14 +330,6 @@ header h5 {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
     height: 100vh;
-}
-
-#titre-participants {
-    font-size:3em;
-    font-weight: bold;
-    background: linear-gradient(rgba(35, 35, 35, 0.9), rgba(35, 35, 35, 0.6));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 #participants table{
@@ -344,8 +386,17 @@ header h5 {
     padding-top:70px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
+    height: 98vh;
 }
-
+#show-participant h1 {
+    font-size:3em;
+    text-transform: uppercase;
+    font-weight: bolder;
+    background: linear-gradient(rgba(35, 35, 35, 0.9), rgba(35, 35, 35, 0.6));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 30px;
+}
 .card-img-participant{
     border: black solid 3px;
     border-radius: 50%;
@@ -364,9 +415,20 @@ header h5 {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
 
-
+}
+.vich-image a {
+    display:none;
 }
 
+#modifier_profil h1 {
+    font-size:3em;
+    text-transform: uppercase;
+    font-weight: bolder;
+    background: linear-gradient(rgba(35, 35, 35, 0.9), rgba(35, 35, 35, 0.6));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 30px;
+}
 /* = = = = = = = = = = = = = = = = = = = = RESET PASSWORD = = = = = = = = = = = = = = = = = = = = */
 #reset_pw {
     padding-top:70px;
@@ -421,12 +483,30 @@ header h5 {
     padding-top:70px;
 }
 
+#ajouter_lieu h1 {
+    font-size: 3em;
+    text-transform: uppercase;
+    font-weight: bolder;
+    background: linear-gradient(rgba(35, 35, 35, 0.9), rgba(35, 35, 35, 0.6));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 /* = = = = = = = = = = = = = = = = = = = = AJOUTER VILLE = = = = = = = = = = = = = = = = = = = = */
 #ajouter_ville {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
     padding-top:70px;
     height:100vh;
+}
+
+#ajouter_ville h1 {
+    font-size: 3em;
+    text-transform: uppercase;
+    font-weight: bolder;
+    background: linear-gradient(rgba(35, 35, 35, 0.9), rgba(35, 35, 35, 0.6));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 /* = = = = = = = = = = = = = = = = = = = = FOOTER  = = = = = = = = = = = = = = = = = = = =*/
 footer {
