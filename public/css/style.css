@@ -160,6 +160,8 @@ header h5 {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     padding-top:70px;
     color:rgba(255, 255, 255, 0.5);
+    height: 100vh;
+
 }
 #tableau_sorties {
     color:rgba(255, 255, 255, 0.5);
@@ -228,7 +230,23 @@ header h5 {
     padding-top:70px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
+    height: 100vh;
 }
+
+#participants table{
+    color:rgba(255, 255, 255, 0.8);
+}
+
+#index_villes{
+    padding-top:70px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
+    color:rgba(255, 255, 255, 0.8);
+}
+
+#index_villes table{
+    color:rgba(255, 255, 255, 0.8);
+}
+
 /* DETAILS SORTIE */
 #details_sortie {
     padding-top:70px;
@@ -244,9 +262,9 @@ header h5 {
 }
 .card-img-top {
     border-radius: 20%;
+    margin-top:30px;
     width:60%;
     height:60%;
-    margin-top:30px;
 }
 
 .card-img-participant{
@@ -254,6 +272,14 @@ header h5 {
     border-radius: 50%;
     width: 55%;
     height: 40%;
+
+}
+
+.card-img-participant-index{
+    border: black solid 3px;
+    border-radius: 50%;
+    width: 35%;
+    height: 20%;
 
 }
 .card-img-participant:hover{
@@ -278,6 +304,8 @@ header h5 {
     padding-top:70px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
+    height: 100vh;
+
 }
 #link_modifier_profil {
     color:rgba(255, 255, 255, 0.8);
@@ -306,6 +334,8 @@ header h5 {
     padding-top:70px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
+    height: 100vh;
+
 }
 
 /* MODIFIER SORTIE */
@@ -327,6 +357,7 @@ header h5 {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
     padding-top:70px;
+
 }
 
 /* AJOUTER VILLE */
@@ -334,6 +365,8 @@ header h5 {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
     color:rgba(255, 255, 255, 0.8);
     padding-top:70px;
+    height: 100vh;
+
 }
 /* FOOTER */
 footer {
@@ -362,4 +395,11 @@ footer a:hover {
 #blackness {
     background-color: black;
     height:100vh;
+}
+
+#smilerImg{
+    width: 55%;
+    position: absolute;
+    left: 20em;
+    top: 3em;
 }
