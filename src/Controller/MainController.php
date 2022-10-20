@@ -26,6 +26,9 @@ class MainController extends AbstractController
         SortieRepository $sortieRepository
     ): Response
     {
+
+        $this->addFlash('pouete','Etes vous sur ?' );
+
         $sorties = $sortieRepository->findAll();
         return $this->render('main/black.html.twig', [
             "sorties" => $sorties,

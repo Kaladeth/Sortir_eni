@@ -8,7 +8,7 @@
             {{ form_start(form) }}
             {{ form_widget(form) }}
 
-            <button class="btn">{{ button_label|default('Save') }}</button>
+            <button class="btn" id="btn_modouaj">{{ button_label|default('Save') }}</button>
 
             {{ form_end(form) }}
             <a href="{{ path('app_ville_index') }}">Villes</a>

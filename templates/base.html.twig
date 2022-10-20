@@ -76,7 +76,6 @@
             document.getElementById("navbar").style.backgroundColor="transparent";
             document.getElementById("panneau_admin").style.color="black";
 
-
         }
     }
 </script>
@@ -84,7 +83,7 @@
 {% endblock %}
 <footer>
     <p><i class="fa-solid fa-copyright mx-4"></i>Maxime PHELINE, Yohann DOUCET, Esteban JARDIN</p>
-    <a href="{{ path('black') }}"><i class="fa-solid fa-door-closed"></i></a>
+    <a href="{{ path('black') }}" onclick="return confirm('Etes vous sur ?')"><i class="fa-solid fa-door-closed"></i></a>
 </footer>
 </body>
 </html>
