@@ -30,8 +30,12 @@ class LieuController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $lieuRepository->save($lieu, true);
+            $this->addFlash(
+                'notice',
+                'Lieu ajouté !'
+            );
 
-            return $this->redirectToRoute('app_lieu_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('accueil_main', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('lieu/new.html.twig', [

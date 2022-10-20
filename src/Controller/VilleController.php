@@ -32,6 +32,10 @@ class VilleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $villeRepository->save($ville, true);
+            $this->addFlash(
+                'notice',
+                'Ville ajoutée !'
+            );
             return $this->redirectToRoute('accueil_main', [], Response::HTTP_SEE_OTHER);
         }
             return $this->renderForm('ville/new.html.twig', [
