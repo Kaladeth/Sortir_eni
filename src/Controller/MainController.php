@@ -14,7 +14,7 @@ class MainController extends AbstractController
         SortieRepository $sortieRepository
     ): Response
     {
-        $sorties = $sortieRepository->findAll();
+        $sorties = $sortieRepository->findMain();
         return $this->render('main/index.html.twig', [
             "sorties" => $sorties,
             'controller_name' => 'MainController',

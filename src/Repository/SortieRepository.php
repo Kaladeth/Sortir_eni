@@ -39,65 +39,77 @@ class SortieRepository extends ServiceEntityRepository
         }
     }
 
+    public function findMain()
+    {
+        $queryBuilder = $this->createQueryBuilder('p');
+        $queryBuilder
+            ->andWhere('p.etatSortie!=3')
+            ->andWhere('p.etatSortie!=6')
+            ->andWhere('p.etatSortie!=7');
+        $queryBuilder->setMaxResults(3);
+        $query = $queryBuilder->getQuery();
+        return $query->getResult();
+    }
+
     public function findWithFilters(
-                                    string $nomSite = NULL,
-                                    string $rechercheTexte = NULL,
-                                    string $dateDebut = NULL,
-                                    string $dateFin = NULL,
-                                    bool $suisOrganisateur =  NULL,
-                                    bool $suisInscrit =  NULL,
-                                    bool $suisPasInscrit =  NULL,
-                                    bool $sortiesPassees =  NULL,
-                                    int $userId
+        string $nomSite = NULL,
+        string $rechercheTexte = NULL,
+        string $dateDebut = NULL,
+        string $dateFin = NULL,
+        bool   $suisOrganisateur = NULL,
+        bool   $suisInscrit = NULL,
+        bool   $suisPasInscrit = NULL,
+        bool   $sortiesPassees = NULL,
+        int    $userId
     )
     {
         $query = $this
             ->createQueryBuilder('so')
             ->select('so');
 
-        if (!empty($nomSite)){
+        if (!empty($nomSite)) {
             $query = $query
                 ->join('so.site', 'si')
                 ->andWhere('si.nom IN (:site)')
                 ->setParameter('site', $nomSite);
         }
-        if(!empty($rechercheTexte)){
+        if (!empty($rechercheTexte)) {
             $query = $query
                 ->andWhere('so.nom LIKE :recherche')
                 ->setParameter('recherche', "%{$rechercheTexte}%");
         }
-        if (!empty($dateDebut)){
+        if (!empty($dateDebut)) {
             $query = $query
                 ->andWhere('so.dateHeureDebut > :dateDebutRech')
                 ->setParameter('dateDebutRech', $dateDebut);
         }
-        if (!empty($dateFin)){
+        if (!empty($dateFin)) {
             $query = $query
                 ->andWhere('so.dateHeureDebut < :dateFinRech')
                 ->setParameter('dateFinRech', $dateFin);
         }
-        if($suisOrganisateur){
+        if ($suisOrganisateur) {
             $query = $query
                 ->andWhere('so.organisateur = :idUser')
-                ->setParameter('idUser',$userId);
+                ->setParameter('idUser', $userId);
         }
-        if($suisInscrit){
+        if ($suisInscrit) {
             $query = $query
                 ->leftjoin('so.participants', 'pa')
                 ->andWhere('pa.id IN (:userId)')
-                ->setParameter('userId',$userId);
+                ->setParameter('userId', $userId);
         }
-        if($suisPasInscrit){
+        if ($suisPasInscrit) {
             $tempsQuery = $this->createQueryBuilder('sortie')
                 ->select('sortie.id')
                 ->leftjoin('sortie.participants', 'participant')
                 ->andWhere('participant.id = :userId');
 
             $query = $query
-                ->andWhere('so.id NOT IN ('.$tempsQuery->getDQL().')')
-                ->setParameter('userId',$userId);
+                ->andWhere('so.id NOT IN (' . $tempsQuery->getDQL() . ')')
+                ->setParameter('userId', $userId);
         }
-        if ($sortiesPassees){
+        if ($sortiesPassees) {
             $query = $query
                 ->andWhere('so.etatSortie = :etatId')
                 ->setParameter('etatId', 5);
