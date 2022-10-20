@@ -16,7 +16,7 @@
             <div class="row">
                 {% for sortie in sorties %}
                     <div class="col-4">
-                        <div class="card" style="width: 100%;">
+                        <div class="card mb-3" style="width: 100%;">
                             <img src="img/uploads/{{ sortie.imageName }}" class="card-img-top mx-auto" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{ sortie.nom }}</h5>
@@ -25,7 +25,6 @@
                             </div>
                         </div>
                     </div>
-                    {#                    <img src= alt="">#}
                 {% endfor %}
             </div>
 
