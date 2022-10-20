@@ -62,7 +62,7 @@
             <div class="d-flex justify-content-centers" >
                 <div class="mx-auto">
                     {% for part in participant %}
-                        - <p><a href="{{ path('app_participant_show', {'id': part.id}) }}">{{ part.nom }} {{ part.prenom }}</a></p>
+                        <p><a href="{{ path('app_participant_show', {'id': part.id}) }}">{{ part.nom }} {{ part.prenom }}</a></p>
                     {% endfor %}
                 </div>
             </div>
