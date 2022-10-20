@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Participant;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
@@ -29,6 +30,7 @@ class ParticipantCrudController extends AbstractCrudController
             TextField::new('nom', 'Nom'),
             TextField::new('prenom', 'Prenom'),
             NumberField::new('telephone', 'Tél.'),
+            ArrayField::new('roles', 'Rôle')->hideOnIndex(),
             BooleanField::new('administrateur', 'Statut admin.'),
             BooleanField::new('actif', 'En activité'),
             AssociationField::new('site', 'Site'),

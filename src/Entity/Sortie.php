@@ -9,7 +9,6 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SortieRepository::class)]
@@ -22,9 +21,11 @@ class Sortie
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message: 'Merci de renseigner l\'intitulé de la sortie')]
     private ?string $nom = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\GreaterThan('today UTC', message: 'Merci de renseigner une date et une heure à venir')]
     /**
      * @Assert\Type("\DateTimeInterface")
      */
@@ -34,6 +35,7 @@ class Sortie
     private ?int $duree = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\GreaterThan('today UTC', message: 'Merci de renseigner une date et une heure à venir')]
     /**
      * @Assert\Type("\DateTimeInterface")
      */
@@ -43,6 +45,7 @@ class Sortie
     private ?int $nbInscriptionsMax = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message: 'Merci de préciser les informations relatives à la sortie')]
     private ?string $infosSortie = null;
 
     #[ORM\ManyToOne(inversedBy: 'sorties')]

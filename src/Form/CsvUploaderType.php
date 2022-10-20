@@ -15,7 +15,7 @@ class CsvUploaderType extends AbstractType
     {
         $builder
             ->add('csvfile', FileType::class, [
-                'label' => 'Fichier CSV',
+                'label' => false,
 
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
@@ -28,6 +28,7 @@ class CsvUploaderType extends AbstractType
                 // in the associated entity, so you can use the PHP constraint classes
             ])
             ->add('save', SubmitType::class, [
+                'label' => "Protocole de transmission du fichier CSV",
                 'attr' => [
                     "class" => "btn btn-info"
                 ]
