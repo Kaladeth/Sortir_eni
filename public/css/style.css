@@ -324,6 +324,18 @@ header h5 {
 #lieu_bloc i {
     margin-top:3px;
 }
+
+/* = = = = = = = = = = = = = = = = = = = = DETAILS SORTIE = = = = = = = = = = = = = = = = = = = = */
+#titre-sortie{
+    font-size:3em;
+    text-transform: uppercase;
+    font-weight: bolder;
+    background: linear-gradient(rgba(35, 35, 35, 0.9), rgba(35, 35, 35, 0.6));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 30px;
+}
+
 /* = = = = = = = = = = = = = = = = = = = = LISTE PARTICIPANTS = = = = = = = = = = = = = = = = = = = = */
 #participants {
     padding-top:70px;
