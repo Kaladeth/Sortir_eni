@@ -24,11 +24,62 @@ class SortieController extends AbstractController
     //METHODE D'AFFICHAGE DE LA PAGE
     #[Route('/', name: 'app_sortie_index', methods: ['GET'])]
     public function index(SortieRepository $sortieRepository,
-                          SiteRepository $siteRepository
+                          SiteRepository $siteRepository,
+                          EtatRepository $etatRepository,
+                          EntityManagerInterface $entityManager
     ): Response
     {
-        $sorties = $sortieRepository->findAll();
 
+        //ARCHIVAGE DES SORTIES TERMINEES DEPUIS +1 MOIS
+        $etatCloture = $etatRepository->findOneBy(['id'=>3]);
+        $etatEnCours = $etatRepository->findOneBy(['id'=>4]);
+        $etatPasse = $etatRepository->findOneBy(['id'=>5]);
+        $etatArchive = $etatRepository->findOneBy(['id'=>7]);
+        date_default_timezone_set('Europe/Paris');
+        $dateNow = new \DateTime("now");
+        $sorties = $sortieRepository->findAll();
+        foreach ($sorties as $sort)
+        {
+            //etat cloture
+            $dateLimite = $sort->getDateLimiteInscription();
+            if ($dateLimite<$dateNow){
+                $sort->setEtatSortie($etatCloture);
+                $entityManager->persist($sort);
+                $entityManager->flush();
+            }
+
+            //etat en cours
+            $dureeEnCours = $sort->getDuree();
+            $sortieEnCoursDebut = clone $sort->getDateHeureDebut();
+            $sortieEnCoursFin = clone $sortieEnCoursDebut;
+            $sortieEnCoursFin =  $sortieEnCoursFin->modify('+'.$dureeEnCours.' minutes');
+            if ($sortieEnCoursDebut < $dateNow && $sortieEnCoursFin > $dateNow){
+                $sort->setEtatSortie($etatEnCours);
+                $entityManager->persist($sort);
+                $entityManager->flush();
+            }
+
+            //etat passé
+            $duree = $sort->getDuree();
+            $sortiePassee = clone $sort->getDateHeureDebut();
+            $sortiePassee->modify('+'. $duree . ' minutes' );
+            if ($sortiePassee<$dateNow){
+                $sort->setEtatSortie($etatPasse);
+                $entityManager->persist($sort);
+                $entityManager->flush();
+            }
+
+            //etat archive
+            $finDeSortie = clone $sort->getDateHeureDebut();
+            $finDeSortie->add(new \DateInterval('PT745H'));
+            $finDeSortie->add(new \DateInterval('PT'.$sort->getDuree().'M'));
+            if ($finDeSortie<$dateNow){
+                $sort->setEtatSortie($etatArchive);
+                $entityManager->persist($sort);
+                $entityManager->flush();
+            }
+
+        }
         return $this->render('sortie/index.html.twig', [
             'sorties' => $sorties,
             'sites' => $siteRepository->findAll()

@@ -27,41 +27,43 @@ class SortieType extends AbstractType
                 ])
             ->add('dateHeureDebut', null,
                 [
-                    "attr"=>["class"=>"dhd_ajout"],
+                    "attr" => ["class" => "dhd_ajout"],
 
-                    "label"=>"Date et heure de la sortie"
+                    "label" => "Date et heure de la sortie"
                 ])
             ->add('duree', null,
                 [
-                    "attr"=>["placeholder"=>"en minutes"],
-                    "label"=>"Durée"
+                    "attr" => ["placeholder" => "en minutes"],
+                    "label" => "Durée"
                 ])
             ->add('dateLimiteInscription', null,
                 [
-                    "attr"=>["class"=>"dli_ajout"],
-                    "label"=>"Date limite d'inscription"
+                    "attr" => ["class" => "dli_ajout"],
+                    "label" => "Date de clôture"
                 ])
-            ->add('nbInscriptionsMax',null,
+            ->add('nbInscriptionsMax', null,
                 [
-                    "label"=>"Nombre maximum d'inscrits"
+                    "attr" => ["class" => "nbInscr_ajout",
+                        "placeholder" => "nombre max d'inscrits"
+                    ],
+                    "label" => "Participants max"
                 ])
             ->add('infosSortie', TextareaType::class,
                 [
-                    "attr"=>["class"=>"motifAnnulation"],
-                    "label"=>"Description de la sortie"
+                    "attr" => ["class" => "motifAnnulation"],
+                    "label" => "Description de la sortie"
                 ])
-            ->add('imageFile',VichImageType::class,
+            ->add('imageFile', VichImageType::class,
                 [
-                    "label"=>"Photo"
+                    "label" => "Photo"
                 ])
             ->add('lieu', EntityType::class,
                 [
-                    'class'=>Lieu::class,
-                    "choice_label"=>strtoupper("nom"),
-                    "attr"=>["class"=>"lieu_ajout"]
+                    'class' => Lieu::class,
+                    "choice_label" => strtoupper("nom"),
+                    "attr" => ["class" => "lieu_ajout"]
                 ]
-            )
-        ;
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void

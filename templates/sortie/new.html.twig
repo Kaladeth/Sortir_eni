@@ -6,12 +6,61 @@
     <main id="creer_sortie_block">
         <div class="container-fluid">
             <div id="ajout_sortie">
-                <h1>Création d'une nouvelle sortie</h1>
+                <h1 class="text-center my-5">Création d'une nouvelle sortie</h1>
+                <div class="forms">
+                    {{ form_start(form) }}
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                {{ form_row(form.nom) }}
+                            </div>
+                            <div class="col-6">
+                                {{ form_row(form.duree) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                {{ form_row(form.nbInscriptionsMax) }}
+                            </div>
+                            <div class="col-6">
+                                {{ form_row(form.infosSortie) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6" >
+                                    {{ form_row(form.dateHeureDebut) }}
+                            </div>
+                            <div class="col-6">
+                                {{ form_row(form.dateLimiteInscription) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                {{ form_row(form.imageFile) }}
+                            </div>
+                            <div class="col-6">
+                                <div class="row" id="lieu_bloc">
+                                    <div class="col-11">
+                                        {{ form_row(form.lieu) }}
+                                    </div>
+                                    <div class="col-1 pb-4">
+                                        <a href="{{ path('app_lieu_new') }}">
+                                            <div class="plus_sign"><i class="fa-solid fa-circle-plus"></i></div>
+                                        </a>
 
-                {{ include('sortie/_form.html.twig') }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="mx-auto">
+                    </div>
 
+                    <div class="d-flex justify-content-center gap-4">
+                        <button class="btn" id="btn_modouaj">{{ button_label|default('Ajouter') }}</button>
+                        <a href="{{ path('app_sortie_index') }}"><button id="btn_btl">Retour à la liste</button></a>
+                    </div>
 
-                <a href="{{ path('app_sortie_index') }}">back to list</a>
+                </div>
 
 
             </div>
