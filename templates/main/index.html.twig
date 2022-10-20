@@ -9,14 +9,18 @@
         </div>
     {% endfor %}
 <main id="accueil">
-    <div class="container-fluid text-center">
+    <div class="container-fluid text-center" id="accueil_main">
         <h1 id="titre_accueil" class="pt-5">Sorties.com</h1>
-        <p>Rien ne vaut une bonne sortie pour se sentir mieux après une dure semaine d'apprentissage !</p>
-        <div class="container">
+        <p>Evadez-vous après une dure semaine avec l'ENI...</p>
+        <a href="{{ path('app_login') }}"><button id="btn_acc_main">Se connecter</button></a>
+    </div>
+        <div class="container text-center" id="acc_cards">
+            <h2>Découvrez nos sorties !</h2>
             <div class="row">
                 {% for sortie in sorties %}
+
                     <div class="col-4">
-                        <div class="card mb-3" style="width: 100%;">
+                        <div class="card" style="width: 100%;">
                             <img src="img/uploads/{{ sortie.imageName }}" class="card-img-top mx-auto" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{ sortie.nom }}</h5>
