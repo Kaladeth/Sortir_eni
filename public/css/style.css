@@ -332,6 +332,16 @@ header h5 {
     height: 100vh;
 }
 
+#titre-participants{
+    font-size:3em;
+    text-transform: uppercase;
+    font-weight: bolder;
+    background: linear-gradient(rgba(35, 35, 35, 0.9), rgba(35, 35, 35, 0.6));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 30px;
+}
+
 #participants table{
     color:rgba(255, 255, 255, 0.8);
 }
